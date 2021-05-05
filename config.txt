@@ -1,0 +1,26 @@
+# Server Name
+
+serv host name = Ser_name
+
+# ip server
+serv ip serv = 192.168.1.1
+
+geographic location = 101
+
+serv Port = 6668
+
+serv SIDl = 101
+
+count all server = 1
+
+serv admin location_info = UF
+
+serv admin email = admin@admin.ru
+
+serv admin other inform = NO 
+
+serv network name = ELITA
+
+serv port = 1013
+
+serv directory = C:\DIR
