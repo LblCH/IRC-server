@@ -2,9 +2,9 @@
 
 int main()
 {
-	Server ser("../config.txt");
-	ser.anonce();
-
+	Server server("./config.txt");
+	server.announce();
+	server.start();
 //	std::cout << "Hello, World!" << std::endl;
 	return 0;
 }

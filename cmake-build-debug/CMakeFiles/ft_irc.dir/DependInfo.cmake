@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/avivien/CLionProject/ft_irc/Channel.cpp" "/Users/avivien/CLionProject/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Channel.cpp.o"
-  "/Users/avivien/CLionProject/ft_irc/Client.cpp" "/Users/avivien/CLionProject/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Client.cpp.o"
-  "/Users/avivien/CLionProject/ft_irc/Msg.cpp" "/Users/avivien/CLionProject/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Msg.cpp.o"
-  "/Users/avivien/CLionProject/ft_irc/Server.cpp" "/Users/avivien/CLionProject/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Server.cpp.o"
-  "/Users/avivien/CLionProject/ft_irc/main.cpp" "/Users/avivien/CLionProject/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/main.cpp.o"
+  "/Users/ztawanna/ft_irc/Channel.cpp" "/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Channel.cpp.o"
+  "/Users/ztawanna/ft_irc/Client.cpp" "/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Client.cpp.o"
+  "/Users/ztawanna/ft_irc/Msg.cpp" "/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Msg.cpp.o"
+  "/Users/ztawanna/ft_irc/Server.cpp" "/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/Server.cpp.o"
+  "/Users/ztawanna/ft_irc/main.cpp" "/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/ft_irc.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

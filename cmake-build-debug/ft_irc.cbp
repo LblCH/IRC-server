@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/avivien/CLionProject/ft_irc/cmake-build-debug"/>
+				<Option working_dir="/Users/ztawanna/ft_irc/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/avivien/CLionProject/ft_irc/cmake-build-debug"/>
+				<Option working_dir="/Users/ztawanna/ft_irc/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/avivien/CLionProject/ft_irc/cmake-build-debug"/>
+				<Option working_dir="/Users/ztawanna/ft_irc/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft_irc">
-				<Option output="/Users/avivien/CLionProject/ft_irc/cmake-build-debug/ft_irc" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/avivien/CLionProject/ft_irc/cmake-build-debug"/>
+				<Option output="/Users/ztawanna/ft_irc/cmake-build-debug/ft_irc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ztawanna/ft_irc/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -52,15 +52,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_irc"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_irc"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft_irc/fast">
-				<Option output="/Users/avivien/CLionProject/ft_irc/cmake-build-debug/ft_irc" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/avivien/CLionProject/ft_irc/cmake-build-debug"/>
+				<Option output="/Users/ztawanna/ft_irc/cmake-build-debug/ft_irc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ztawanna/ft_irc/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -73,44 +73,44 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_irc/fast"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/avivien/CLionProject/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_irc/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/ztawanna/ft_irc/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Channel.cpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Channel.cpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Channel.hpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Channel.hpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Client.cpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Client.cpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Client.hpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Client.hpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Msg.cpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Msg.cpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Msg.hpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Msg.hpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Server.cpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Server.cpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/Server.hpp">
+		<Unit filename="/Users/ztawanna/ft_irc/Server.hpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/define_error.h">
+		<Unit filename="/Users/ztawanna/ft_irc/define_error.h">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/main.cpp">
+		<Unit filename="/Users/ztawanna/ft_irc/main.cpp">
 			<Option target="ft_irc"/>
 		</Unit>
-		<Unit filename="/Users/avivien/CLionProject/ft_irc/CMakeLists.txt">
+		<Unit filename="/Users/ztawanna/ft_irc/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

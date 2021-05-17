@@ -43,13 +43,13 @@ Server::Server(std::string file)
 
 Server::~Server()
 {
-	// std::cout << "Destrunct serv" << std::endl;
+	std::cout << "Destruct serv" << std::endl;
 }
 
-void Server::anonce()
+void Server::announce()
 {
 	std::cout << "Start anonce" << std::endl;
-	std::cout << "serv_host_name : "  <<_serv_host_name  << std::endl;
+	std::cout << "serv_host_name : "  << _serv_host_name  << std::endl;
 	std::cout << "serv_ip_serv serv : " << _serv_ip_serv  << std::endl;
 	std::cout << "geographic_location serv : " << _geographic_location  << std::endl;
 	std::cout << "serv_Port serv : " << _serv_Port  << std::endl;
@@ -66,9 +66,57 @@ void Server::anonce()
 
 void Server::start()
 {
-	while (_key == 0)
-	{
-		// port listen
+//	while (_key == 0)
+//	{
+		int status;
+		struct addrinfo hints;
+		struct addrinfo *servinfo;  		// указатель на результаты
+
+		memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
+		hints.ai_family = AF_UNSPEC;    	// неважно, IPv4 или IPv6
+		hints.ai_socktype = SOCK_STREAM; 	// TCP stream-sockets
+		hints.ai_flags = AI_PASSIVE;     	// заполните мой IP-адрес за меня
+		if ((status = getaddrinfo(NULL, _serv_Port.c_str(), &hints, &servinfo)) != 0)
+		{
+			fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+			exit(1);
+		}
+		// servinfo теперь указывает на связанный список на одну или больше структуру addrinfo
+
+		int sock_fd;
+		// получаем fd для сокета
+		if ((sock_fd = socket(servinfo->ai_family, servinfo->ai_socktype,servinfo->ai_protocol)) == -1)
+		{
+			fprintf(stderr, "Getting socket_fd error\n");
+			exit(1);
+		}
+
+		// избавляемся от надоедливой ошибки «Address already in use»
+		int yes = 1;
+		if (setsockopt(sock_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1) {
+			fprintf(stderr, "setsockopt error\n");
+			exit(1);
+		}
+
+		if (bind(sock_fd, servinfo->ai_addr, servinfo->ai_addrlen) != 0)
+		{
+			fprintf(stderr, "Binding socket error\n");
+			close(sock_fd);
+			exit(1);
+		}
+
+		freeaddrinfo(servinfo); // и освобождаем связанный список
+		if (listen(sock_fd, 5000) == -1)
+		{
+			fprintf(stderr, "listen error\n");
+			exit(1);
+		}
+
+		struct sockaddr_storage client_addr;
+		socklen_t addr_size = sizeof client_addr;
+		int client_fd = accept(sock_fd, (struct sockaddr *)&client_addr, &addr_size);
+		send(client_fd, "Welcome\n", strlen("Welcome\n"), 0);
+
 		// msg read/post
-	}
+//	}
 }

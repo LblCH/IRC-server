@@ -7,7 +7,7 @@ serv ip serv = 192.168.1.1
 
 geographic location = 101
 
-serv Port = 6668
+serv Port = 6667
 
 serv SIDl = 101
 

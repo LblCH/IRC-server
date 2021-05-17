@@ -1,7 +1,12 @@
 #include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
 #include <fstream>
 #include <vector>
 #include "define_error.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 #ifndef FT_IRC_SERVER_HPP
 #define FT_IRC_SERVER_HPP
@@ -39,7 +44,7 @@ private:
 	std::string const _serv_target_flags;
 	*/
 
-////	soket?????? ///
+////	socket?????? ///
 
 	std::vector<msg*> _msg_list;					//// message queue on this server (vector)
 
@@ -48,13 +53,13 @@ private:
 	std::vector<channel*> _channel_active_list;		//// active channels on this server (vector)
 
 
-	typedef struct _serv_s_chanel					//// channel struct
+	typedef struct _serv_s_channel					//// channel struct
 	{
 		std::string _serv_channel_name;
 		std::string _serv_channel_type;
-		struct _serv_s_chanel* next;
+		struct _serv_s_channel* next;
 	}				_serv_t_channel;
-	std::vector<_serv_s_chanel*> _server_channel_list;
+	std::vector<_serv_s_channel*> _server_channel_list;
 
 	typedef struct _serv_s_list						//// server list
 	{
@@ -80,15 +85,15 @@ public:
 	Server();
 	Server(std::string file); /// create new server with config file;
 	~Server();
-	void anonce();  /// show server fields
+	void announce();  /// show server fields
 	void start();
 	void stop();
 	// post msg;
 	// add channel
 
-	// chek network;
+	// check network;
 	// add client
-	// chek client
+	// check client
 	// ???
 };
 
