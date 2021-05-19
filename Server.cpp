@@ -29,10 +29,10 @@ Server::Server(std::string file)
 				if (count == 8) _serv_admin_email = s;
 				if (count == 9) _serv_admin_other_inform = s;
 				if (count == 10) _serv_network_name = s;
-				if (count == 11) _serv_port = atoi(s.c_str());
 				if (count == 12) _serv_directory = s;
 			}
 		}
+
 	}
 	else
 	{
@@ -59,64 +59,152 @@ void Server::announce()
 	std::cout << "serv_admin_email serv : " << _serv_admin_email  << std::endl;
 	std::cout << "serv_admin_other_inform serv : "<<  _serv_admin_other_inform  << std::endl;
 	std::cout << "serv_network_name serv : " << _serv_network_name  << std::endl;
-	std::cout << "serv_port serv : " << _serv_port  << std::endl;
 	std::cout << "serv_directory serv : " << _serv_directory  << std::endl;
-	std::cout << "End anonce" << std::endl;
+	std::cout << "End announce" << std::endl;
 }
 
 void Server::start()
 {
-//	while (_key == 0)
-//	{
-		int status;
-		struct addrinfo hints;
-		struct addrinfo *servinfo;  		// указатель на результаты
+	int status;
+	struct addrinfo hints;
+	struct addrinfo *servinfo;        // указатель на результаты
 
-		memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
-		hints.ai_family = AF_UNSPEC;    	// неважно, IPv4 или IPv6
-		hints.ai_socktype = SOCK_STREAM; 	// TCP stream-sockets
-		hints.ai_flags = AI_PASSIVE;     	// заполните мой IP-адрес за меня
-		if ((status = getaddrinfo(NULL, _serv_Port.c_str(), &hints, &servinfo)) != 0)
+	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
+	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6
+	hints.ai_socktype = SOCK_STREAM;    // TCP stream-sockets
+	hints.ai_flags = AI_PASSIVE;        // заполните мой IP-адрес за меня
+	if ((status = getaddrinfo(NULL, _serv_Port.c_str(), &hints, &servinfo)) != 0)
+	{
+		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+		exit(1);
+	}
+	// servinfo теперь указывает на связанный список на одну или больше структуру addrinfo
+
+	// получаем fd для сокета
+	if ((_listener_fd = socket(servinfo->ai_family, servinfo->ai_socktype,
+						  servinfo->ai_protocol)) == -1)
+	{
+		fprintf(stderr, "Getting socket_fd error\n");
+		exit(1);
+	}
+	fcntl(_listener_fd, F_SETFL, O_NONBLOCK);
+
+	// избавляемся от надоедливой ошибки «Address already in use»
+	int yes = 1;
+	if (setsockopt(_listener_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
+	{
+		fprintf(stderr, "setsockopt error\n");
+		exit(1);
+	}
+
+	if (bind(_listener_fd, servinfo->ai_addr, servinfo->ai_addrlen) != 0)
+	{
+		fprintf(stderr, "Binding socket error\n");
+		close(_listener_fd);
+		exit(1);
+	}
+
+	freeaddrinfo(servinfo); // освобождаем связанный список
+	if (listen(_listener_fd, 5000) == -1)
+	{
+		fprintf(stderr, "listen error\n");
+		exit(1);
+	}
+	FD_SET(_listener_fd, _master_set);
+	_fd_max = _listener_fd;
+	std::cout << "Server started" << std::endl;
+}
+
+void *get_in_addr(struct sockaddr *sa)
+{
+	if (sa->sa_family == AF_INET)
+	{
+		return &(((struct sockaddr_in*)sa)->sin_addr);
+	}
+	return &(((struct sockaddr_in6*)sa)->sin6_addr);
+}
+
+void Server::work()
+{
+	int newfd;								// дескриптор для новых соединений
+	struct sockaddr_storage client_addr;	// адрес клиента
+	socklen_t addr_size = sizeof client_addr;
+	char buf[256];							// буфер для сообщения
+	int nbytes;
+	fd_set *read_fds;
+	timeval	timeout = {10, 0};
+
+	FD_ZERO(&_servers_set);
+	FD_ZERO(&_clients_set);
+
+	for(;;)
+	{
+		read_fds = _master_set;
+		if (select(_fd_max+1, read_fds, NULL, NULL, NULL) == - 1)
 		{
-			fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
-			exit(1);
+			perror("select error");
+			exit(4);
 		}
-		// servinfo теперь указывает на связанный список на одну или больше структуру addrinfo
-
-		int sock_fd;
-		// получаем fd для сокета
-		if ((sock_fd = socket(servinfo->ai_family, servinfo->ai_socktype,servinfo->ai_protocol)) == -1)
+		std::cout << "Selected" << std::endl;
+		// проходим через существующие соединения, ищем данные для чтения
+		for(int i = 0; i <= _fd_max; i++)
 		{
-			fprintf(stderr, "Getting socket_fd error\n");
-			exit(1);
+			if (FD_ISSET(i, read_fds))
+			{ 	// есть!
+				if (i == _listener_fd)
+				{
+					std::cout << "IRC: new connection asked" << std::endl;
+					// обрабатываем новые соединения
+					addr_size = sizeof client_addr;
+					newfd = accept(_listener_fd, (struct sockaddr *)&client_addr, &addr_size);
+//					fcntl(newfd, F_SETFL, O_NONBLOCK);
+					std::cout << "Accepted" << std::endl;
+					if (newfd == -1)
+						perror("accept error");
+					else
+					{
+						FD_SET(newfd, _master_set); // добавляем в мастер-сет
+						if (newfd > _fd_max)
+							_fd_max = newfd;
+					}
+					std::cout << "IRC: new connection on socket " << newfd << std::endl;
+				}
+				else
+				{
+					// обрабатываем данные клиента
+					if ((nbytes = recv(i, buf, sizeof buf, 0)) <= 0)
+					{
+						// получена ошибка или соединение закрыто клиентом
+						if (nbytes == 0)
+							// соединение закрыто
+							printf("IRC: socket %d closed\n", i);
+						else
+							perror("recv error");
+						close(i); 				// bye!
+						FD_CLR(i, _master_set); // удаляем из мастер-сета
+					}
+					else
+					{
+						std::cout << "IRC: new msg from " << newfd << std::endl;
+						// у нас есть какие-то данные от клиента
+						for (int j = 0; j <= _fd_max; j++)
+						{
+							// отсылаем данные всем!
+							if (FD_ISSET(j, _master_set))
+							{
+								// кроме слушающего сокета и клиента, от которого данные пришли
+								if (j != _listener_fd && j != i)
+								{
+									if (send(j, buf, nbytes, 0) == -1)
+									{
+										perror("send error");
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-
-		// избавляемся от надоедливой ошибки «Address already in use»
-		int yes = 1;
-		if (setsockopt(sock_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1) {
-			fprintf(stderr, "setsockopt error\n");
-			exit(1);
-		}
-
-		if (bind(sock_fd, servinfo->ai_addr, servinfo->ai_addrlen) != 0)
-		{
-			fprintf(stderr, "Binding socket error\n");
-			close(sock_fd);
-			exit(1);
-		}
-
-		freeaddrinfo(servinfo); // и освобождаем связанный список
-		if (listen(sock_fd, 5000) == -1)
-		{
-			fprintf(stderr, "listen error\n");
-			exit(1);
-		}
-
-		struct sockaddr_storage client_addr;
-		socklen_t addr_size = sizeof client_addr;
-		int client_fd = accept(sock_fd, (struct sockaddr *)&client_addr, &addr_size);
-		send(client_fd, "Welcome\n", strlen("Welcome\n"), 0);
-
-		// msg read/post
-//	}
+	}
 }
