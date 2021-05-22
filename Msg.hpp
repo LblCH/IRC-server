@@ -8,15 +8,12 @@
 class Msg
 {
 private:
-	std::string const _msg_enter_str;
-	std::string const _msg_type;
-	std::string const _msg_text;
+	std::string const _msg_prefix;
+	std::string const _msg_command;
+	std::string const *_msg_params;
 public:
-	// create msg
-	// parse msg
-	// collect msg
-	// encrypt msg
-	// decrypt msg
+	Msg(std::string message);
+	~Msg();
 };
 
 

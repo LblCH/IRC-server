@@ -7,12 +7,14 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00deb5c6-d6f8-4a89-9186-2615d98698c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Msg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Msg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Msg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Msg.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,10 +48,10 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunManager">
-    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_irc" TARGET_NAME="ft_irc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc">
+    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_irc" TARGET_NAME="ft_irc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -70,10 +72,19 @@
       <workItem from="1621355613657" duration="5697000" />
       <workItem from="1621376444727" duration="6504000" />
       <workItem from="1621486222173" duration="387000" />
+      <workItem from="1621667154327" duration="101000" />
+      <workItem from="1621667259978" duration="15000" />
+      <workItem from="1621667287117" duration="1726000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="53" y="308" key="SettingsEditor" timestamp="1621668122557">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="53" y="308" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1621668122557" />
   </component>
 </project>
