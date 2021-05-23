@@ -67,10 +67,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ztawanna/ft_irc
+CMAKE_SOURCE_DIR = /Users/avivien/CLionProject/IRCC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ztawanna/ft_irc/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/avivien/CLionProject/IRCC/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles /Users/ztawanna/ft_irc/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/avivien/CLionProject/IRCC/cmake-build-debug/CMakeFiles /Users/avivien/CLionProject/IRCC/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/avivien/CLionProject/IRCC/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ft_irc
+# Target rules for targets named IRCC
 
 # Build rule for target.
-ft_irc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ft_irc
-.PHONY : ft_irc
+IRCC: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 IRCC
+.PHONY : IRCC
 
 # fast build rule for target.
-ft_irc/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/build
-.PHONY : ft_irc/fast
+IRCC/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/build
+.PHONY : IRCC/fast
 
 Channel.o: Channel.cpp.o
 
@@ -148,7 +148,7 @@ Channel.o: Channel.cpp.o
 
 # target to build an object file
 Channel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Channel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Channel.cpp.o
 .PHONY : Channel.cpp.o
 
 Channel.i: Channel.cpp.i
@@ -157,7 +157,7 @@ Channel.i: Channel.cpp.i
 
 # target to preprocess a source file
 Channel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Channel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Channel.cpp.i
 .PHONY : Channel.cpp.i
 
 Channel.s: Channel.cpp.s
@@ -166,7 +166,7 @@ Channel.s: Channel.cpp.s
 
 # target to generate assembly for a file
 Channel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Channel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Channel.cpp.s
 .PHONY : Channel.cpp.s
 
 Client.o: Client.cpp.o
@@ -175,7 +175,7 @@ Client.o: Client.cpp.o
 
 # target to build an object file
 Client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Client.cpp.o
 .PHONY : Client.cpp.o
 
 Client.i: Client.cpp.i
@@ -184,7 +184,7 @@ Client.i: Client.cpp.i
 
 # target to preprocess a source file
 Client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Client.cpp.i
 .PHONY : Client.cpp.i
 
 Client.s: Client.cpp.s
@@ -193,7 +193,7 @@ Client.s: Client.cpp.s
 
 # target to generate assembly for a file
 Client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Client.cpp.s
 .PHONY : Client.cpp.s
 
 Msg.o: Msg.cpp.o
@@ -202,7 +202,7 @@ Msg.o: Msg.cpp.o
 
 # target to build an object file
 Msg.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Msg.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Msg.cpp.o
 .PHONY : Msg.cpp.o
 
 Msg.i: Msg.cpp.i
@@ -211,7 +211,7 @@ Msg.i: Msg.cpp.i
 
 # target to preprocess a source file
 Msg.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Msg.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Msg.cpp.i
 .PHONY : Msg.cpp.i
 
 Msg.s: Msg.cpp.s
@@ -220,7 +220,7 @@ Msg.s: Msg.cpp.s
 
 # target to generate assembly for a file
 Msg.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Msg.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Msg.cpp.s
 .PHONY : Msg.cpp.s
 
 Server.o: Server.cpp.o
@@ -229,7 +229,7 @@ Server.o: Server.cpp.o
 
 # target to build an object file
 Server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Server.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Server.cpp.o
 .PHONY : Server.cpp.o
 
 Server.i: Server.cpp.i
@@ -238,7 +238,7 @@ Server.i: Server.cpp.i
 
 # target to preprocess a source file
 Server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Server.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Server.cpp.i
 .PHONY : Server.cpp.i
 
 Server.s: Server.cpp.s
@@ -247,7 +247,7 @@ Server.s: Server.cpp.s
 
 # target to generate assembly for a file
 Server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/Server.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Server.cpp.s
 .PHONY : Server.cpp.s
 
 main.o: main.cpp.o
@@ -256,7 +256,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -265,7 +265,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -274,7 +274,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -285,7 +285,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... ft_irc"
+	@echo "... IRCC"
 	@echo "... Channel.o"
 	@echo "... Channel.i"
 	@echo "... Channel.s"

@@ -2,10 +2,12 @@
 
 int main()
 {
-	Server server("./config.txt");
+	Server server("../config.txt");
 	server.announce();
+	std::cout << "Hello, World!" << std::endl;
 	server.start();
+	std::cout << "Hello, World!" << std::endl;
 	server.work();
-//	std::cout << "Hello, World!" << std::endl;
+	std::cout << "Hello, World!" << std::endl;
 	return 0;
 }

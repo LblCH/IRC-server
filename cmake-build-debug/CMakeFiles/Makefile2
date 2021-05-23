@@ -63,16 +63,16 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ztawanna/ft_irc
+CMAKE_SOURCE_DIR = /Users/avivien/CLionProject/IRCC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ztawanna/ft_irc/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/avivien/CLionProject/IRCC/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/ft_irc.dir/all
+all: CMakeFiles/IRCC.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/ft_irc.dir/clean
+clean: CMakeFiles/IRCC.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/ft_irc.dir
+# Target rules for target CMakeFiles/IRCC.dir
 
 # All Build rule for target.
-CMakeFiles/ft_irc.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target ft_irc"
-.PHONY : CMakeFiles/ft_irc.dir/all
+CMakeFiles/IRCC.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/avivien/CLionProject/IRCC/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target IRCC"
+.PHONY : CMakeFiles/IRCC.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/ft_irc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ft_irc.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/ft_irc.dir/rule
+CMakeFiles/IRCC.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/avivien/CLionProject/IRCC/cmake-build-debug/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/IRCC.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/avivien/CLionProject/IRCC/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/IRCC.dir/rule
 
 # Convenience name for target.
-ft_irc: CMakeFiles/ft_irc.dir/rule
+IRCC: CMakeFiles/IRCC.dir/rule
 
-.PHONY : ft_irc
+.PHONY : IRCC
 
 # clean rule for target.
-CMakeFiles/ft_irc.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_irc.dir/build.make CMakeFiles/ft_irc.dir/clean
-.PHONY : CMakeFiles/ft_irc.dir/clean
+CMakeFiles/IRCC.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/clean
+.PHONY : CMakeFiles/IRCC.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
