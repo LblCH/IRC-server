@@ -1,3 +1,6 @@
+#ifndef FT_IRC_SERVER_HPP
+#define FT_IRC_SERVER_HPP
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,16 +12,18 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include <fcntl.h>
-
-#ifndef FT_IRC_SERVER_HPP
-#define FT_IRC_SERVER_HPP
+#include "Client.hpp"
+#include "Msg.hpp"
+#include "Channel.hpp"
 
 class msg;
 class client;
 class channel;
 
-class Server
+class IRCServer
 {
 private:
 	std::string _serv_host_name;
@@ -54,7 +59,7 @@ private:
 
 	std::vector<msg*> _msg_list;					//// message queue on this server (vector)
 
-	std::vector<client*> _client_active_list;		//// active clients on this server (vector)
+	std::vector<Client> _client_list;		//// active clients on this server (vector)
 
 	std::vector<channel*> _channel_active_list;		//// active channels on this server (vector)
 
@@ -67,32 +72,10 @@ private:
 	}				_serv_t_channel;
 	std::vector<_serv_s_channel*> _server_channel_list;
 
-	typedef struct _serv_s_list						//// server list
-	{
-		std::string _list_name;
-		int			_server_fd;
-		struct _serv_s_list* next;
-	}				_serv_t_list;
-	std::vector<_serv_s_list*> _serv_server_list;
-
-	typedef struct _serv_s_client					//// client list
-	{
-		std::string _client_name;
-		std::vector<std::string> _last_client_name;
-		std::string _client_pass;
-		std::string _client_host;
-		std::string _client_nik_name;
-		std::string _client_status;
-		std::string _client_flag;
-		int 		_client_fd;
-		struct _serv_s_client* next;
-	}				_serv_t_client;
-	std::vector<_serv_s_client*> _serv_client_list;
-
 public:
-	Server();
-	Server(std::string file); /// create new server with config file;
-	~Server();
+	IRCServer();
+	IRCServer(std::string file); /// create new server with config file;
+	~IRCServer();
 	void announce();  /// show server fields
 	void start();
 	void work();

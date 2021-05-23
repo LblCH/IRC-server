@@ -1,9 +1,8 @@
-#include <iostream>
-
-
 #ifndef FT_IRC_MSG_HPP
 #define FT_IRC_MSG_HPP
 
+#include <iostream>
+#include "Server.hpp"
 
 class Msg
 {

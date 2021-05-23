@@ -4,7 +4,7 @@
 
 #include "Server.hpp"
 
-Server::Server(std::string file)
+IRCServer::IRCServer(std::string file)
 {
 	std::ifstream input_file;
 	input_file.open(file);
@@ -40,12 +40,12 @@ Server::Server(std::string file)
 	_key = 0;
 }
 
-Server::~Server()
+IRCServer::~IRCServer()
 {
 	std::cout << "Destruct serv" << std::endl;
 }
 
-void Server::announce()
+void IRCServer::announce()
 {
 	std::cout << "Start anonce" << std::endl;
 	std::cout << "serv_host_name : "  << _serv_host_name  << std::endl;
@@ -61,7 +61,7 @@ void Server::announce()
 	std::cout << "End announce" << std::endl;
 }
 
-void Server::start()
+void IRCServer::start()
 {
 	int status;
 	struct addrinfo hints;
@@ -124,7 +124,7 @@ void *get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-void Server::work()
+void IRCServer::work()
 {
 	int newfd;								// дескриптор для новых соединений
 	struct sockaddr_storage client_addr;	// адрес клиента
@@ -156,12 +156,16 @@ void Server::work()
 					// обрабатываем новые соединения
 					addr_size = sizeof client_addr;
 					newfd = accept(_listener_fd, (struct sockaddr *)&client_addr, &addr_size);
+					char *name;
+					name = inet_ntoa(((struct sockaddr_in *)(struct sockaddr *)&client_addr)->sin_addr);
+					printf("name = %s\n", ((struct sockaddr *)&client_addr)->sa_data);
 					fcntl(newfd, F_SETFL, O_NONBLOCK);
 					if (newfd == -1)
 						perror("accept error");
 					else
 					{
 						FD_SET(newfd, &_master_set); // добавляем в мастер-сет
+//						_client_list.push_back(newfd);  // добавляем нового клиента в вектор
 						if (newfd > _fd_max)
 							_fd_max = newfd;
 					}
@@ -183,6 +187,7 @@ void Server::work()
 					}
 					else
 					{
+//						client._buf += (std::string)buf;
 						std::cout << "IRC: new msg from " << newfd << std::endl;
 						// у нас есть какие-то данные от клиента
 						for (int j = 0; j <= _fd_max; j++)

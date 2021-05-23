@@ -1,21 +1,18 @@
-#include <iostream>
-
-
 #ifndef FT_IRC_CLIENT_H
 #define FT_IRC_CLIENT_H
 
+#include "Server.hpp"
 
 class Client
 {
 private:
-	std::string const _cli_name;
-	std::string _cli_nik_name;
-	std::string _cli_pass;
-	std::string _cli_type;
-	std::string _cli_host_name;
-	std::string status;
+	std::string const _name;
+	std::string _host_name;
+	std::string _pass;
+	std::string _buf;
+	int 		_fd;
 public:
-	// create new client
+//	Client(int fd, );
 	// change pass
 	// connect to serv
 	// disconnect from serv
@@ -28,5 +25,11 @@ public:
 
 };
 
+class Server : public Client
+{
+private:
+	std::string _password;
+//	std::string
+};
 
 #endif //FT_IRC_CLIENT_H

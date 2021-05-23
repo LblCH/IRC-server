@@ -13,7 +13,7 @@ Msg::Msg(std::string message)
 		prev_sep = pos_sep;
 	}
 	else
-		_msg_prefix = null;
+		_msg_prefix = nullptr;
 	pos_sep = message.find(" ", prev_sep);
 	_msg_command = message.substr(prev_sep, pos_sep);
 	_msg_params = nullptr;
