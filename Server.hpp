@@ -26,7 +26,6 @@ private:
 	std::string _geographic_location; // 	RU = 643 // ISO-3166-1 // https://ru.wikipedia.org/wiki/ISO_3166-1
 	std::string _serv_Port;
 	std::string _serv_SIDl;
-	int _count_all_server;
 	//// admin information
 	std::string _serv_admin_location_info;
 	std::string _serv_admin_email;

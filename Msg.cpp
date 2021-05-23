@@ -6,9 +6,14 @@ Msg::Msg(std::string message)
 	size_t pos_sep = 0, prev_sep = 0;
 	int param_count = 0;
 
-	pos_sep = message.find(" ", prev_sep);
-	_msg_prefix = message.substr(0, pos_sep);
-	prev_sep = pos_sep;
+	if(message[0] == ':')
+	{
+		pos_sep = message.find(" ", prev_sep);
+		_msg_prefix = message.substr(1, pos_sep);
+		prev_sep = pos_sep;
+	}
+	else
+		_msg_prefix = null;
 	pos_sep = message.find(" ", prev_sep);
 	_msg_command = message.substr(prev_sep, pos_sep);
 	_msg_params = nullptr;

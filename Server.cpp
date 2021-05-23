@@ -24,12 +24,11 @@ Server::Server(std::string file)
 				if (count == 3) _geographic_location = s;
 				if (count == 4) _serv_Port = s;
 				if (count == 5) _serv_SIDl = s;
-				if (count == 6) _count_all_server = atoi(s.c_str());
-				if (count == 7) _serv_admin_location_info = s;
-				if (count == 8) _serv_admin_email = s;
-				if (count == 9) _serv_admin_other_inform = s;
-				if (count == 10) _serv_network_name = s;
-				if (count == 12) _serv_directory = s;
+				if (count == 6) _serv_admin_location_info = s;
+				if (count == 7) _serv_admin_email = s;
+				if (count == 8) _serv_admin_other_inform = s;
+				if (count == 9) _serv_network_name = s;
+				if (count == 10) _serv_directory = s;
 			}
 		}
 
@@ -54,7 +53,6 @@ void Server::announce()
 	std::cout << "geographic_location serv : " << _geographic_location  << std::endl;
 	std::cout << "serv_Port serv : " << _serv_Port  << std::endl;
 	std::cout << "serv_SIDl serv : "<<  _serv_SIDl  << std::endl;
-	std::cout << "count_all_server serv : " << _count_all_server  << std::endl;
 	std::cout << "serv_admin_location_info serv : " << _serv_admin_location_info  << std::endl;
 	std::cout << "serv_admin_email serv : " << _serv_admin_email  << std::endl;
 	std::cout << "serv_admin_other_inform serv : "<<  _serv_admin_other_inform  << std::endl;
@@ -148,7 +146,6 @@ void Server::work()
 			perror("select error");
 			exit(4);
 		}
-		std::cout << "Selected" << std::endl;
 		// проходим через существующие соединения, ищем данные для чтения
 		for(int i = 0; ready_fds > 0 && i <= _fd_max; i++)
 		{
@@ -156,12 +153,10 @@ void Server::work()
 			{ 	// есть!
 				if (i == _listener_fd)
 				{
-					std::cout << "IRC: new connection asked" << std::endl;
 					// обрабатываем новые соединения
 					addr_size = sizeof client_addr;
 					newfd = accept(_listener_fd, (struct sockaddr *)&client_addr, &addr_size);
-//					fcntl(newfd, F_SETFL, O_NONBLOCK);
-					std::cout << "Accepted" << std::endl;
+					fcntl(newfd, F_SETFL, O_NONBLOCK);
 					if (newfd == -1)
 						perror("accept error");
 					else
@@ -175,7 +170,6 @@ void Server::work()
 				else
 				{
 					// обрабатываем данные клиента
-					std::cout << "IRC: getting msg" << std::endl;
 					if ((nbytes = recv(i, buf, sizeof buf, 0)) <= 0)
 					{
 						// получена ошибка или соединение закрыто клиентом

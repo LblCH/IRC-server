@@ -11,8 +11,6 @@ serv Port = 6667
 
 serv SIDl = 101
 
-count all server = 1
-
 serv admin location_info = UF
 
 serv admin email = admin@admin.ru
