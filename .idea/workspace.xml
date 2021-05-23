@@ -7,7 +7,7 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
@@ -51,9 +51,14 @@
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunManager">
-    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_irc" TARGET_NAME="ft_irc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc">
+    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_irc" TARGET_NAME="ft_irc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -75,16 +80,11 @@
       <workItem from="1621667154327" duration="101000" />
       <workItem from="1621667259978" duration="15000" />
       <workItem from="1621667287117" duration="1726000" />
+      <workItem from="1621748316295" duration="4093000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="53" y="308" key="SettingsEditor" timestamp="1621668122557">
-      <screen x="0" y="23" width="2560" height="1337" />
-    </state>
-    <state x="53" y="308" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1621668122557" />
   </component>
 </project>

@@ -8,8 +8,8 @@
 class Msg
 {
 private:
-	std::string const _msg_prefix;
-	std::string const _msg_command;
+	std::string _msg_prefix;
+	std::string _msg_command;
 	std::string const *_msg_params;
 public:
 	Msg(std::string message);
