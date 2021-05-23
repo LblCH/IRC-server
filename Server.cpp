@@ -69,6 +69,8 @@ void Server::start()
 	struct addrinfo hints;
 	struct addrinfo *servinfo;        // указатель на результаты
 
+	FD_ZERO(&_master_set);
+
 	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
 	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6
 	hints.ai_socktype = SOCK_STREAM;    // TCP stream-sockets
@@ -87,7 +89,7 @@ void Server::start()
 		fprintf(stderr, "Getting socket_fd error\n");
 		exit(1);
 	}
-	fcntl(_listener_fd, F_SETFL, O_NONBLOCK);
+//	fcntl(_listener_fd, F_SETFL, O_NONBLOCK);
 
 	// избавляемся от надоедливой ошибки «Address already in use»
 	int yes = 1;
@@ -110,7 +112,7 @@ void Server::start()
 		fprintf(stderr, "listen error\n");
 		exit(1);
 	}
-	FD_SET(_listener_fd, _master_set);
+	FD_SET(_listener_fd, &_master_set);
 	_fd_max = _listener_fd;
 	std::cout << "Server started" << std::endl;
 }
@@ -129,27 +131,28 @@ void Server::work()
 	int newfd;								// дескриптор для новых соединений
 	struct sockaddr_storage client_addr;	// адрес клиента
 	socklen_t addr_size = sizeof client_addr;
-	char buf[256];							// буфер для сообщения
-	int nbytes;
-	fd_set *read_fds;
-	timeval	timeout = {10, 0};
+	char buf[512];							// буфер для сообщения
+	int nbytes, ready_fds;
+	fd_set read_fds;
+	timeval	timeout = {30, 0};
 
 	FD_ZERO(&_servers_set);
 	FD_ZERO(&_clients_set);
+	FD_ZERO(&read_fds);
 
 	for(;;)
 	{
 		read_fds = _master_set;
-		if (select(_fd_max+1, read_fds, NULL, NULL, NULL) == - 1)
+		if ((ready_fds = select(_fd_max + 1, &read_fds, NULL, NULL, &timeout)) == - 1)
 		{
 			perror("select error");
 			exit(4);
 		}
 		std::cout << "Selected" << std::endl;
 		// проходим через существующие соединения, ищем данные для чтения
-		for(int i = 0; i <= _fd_max; i++)
+		for(int i = 0; ready_fds > 0 && i <= _fd_max; i++)
 		{
-			if (FD_ISSET(i, read_fds))
+			if (FD_ISSET(i, &read_fds))
 			{ 	// есть!
 				if (i == _listener_fd)
 				{
@@ -163,7 +166,7 @@ void Server::work()
 						perror("accept error");
 					else
 					{
-						FD_SET(newfd, _master_set); // добавляем в мастер-сет
+						FD_SET(newfd, &_master_set); // добавляем в мастер-сет
 						if (newfd > _fd_max)
 							_fd_max = newfd;
 					}
@@ -172,6 +175,7 @@ void Server::work()
 				else
 				{
 					// обрабатываем данные клиента
+					std::cout << "IRC: getting msg" << std::endl;
 					if ((nbytes = recv(i, buf, sizeof buf, 0)) <= 0)
 					{
 						// получена ошибка или соединение закрыто клиентом
@@ -181,7 +185,7 @@ void Server::work()
 						else
 							perror("recv error");
 						close(i); 				// bye!
-						FD_CLR(i, _master_set); // удаляем из мастер-сета
+						FD_CLR(i, &_master_set); // удаляем из мастер-сета
 					}
 					else
 					{
@@ -190,7 +194,7 @@ void Server::work()
 						for (int j = 0; j <= _fd_max; j++)
 						{
 							// отсылаем данные всем!
-							if (FD_ISSET(j, _master_set))
+							if (FD_ISSET(j, &_master_set))
 							{
 								// кроме слушающего сокета и клиента, от которого данные пришли
 								if (j != _listener_fd && j != i)
