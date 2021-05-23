@@ -13,8 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="00deb5c6-d6f8-4a89-9186-2615d98698c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Msg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Msg.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Msg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Msg.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,14 +49,9 @@
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunManager">
-    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_irc" TARGET_NAME="ft_irc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc">
+    <configuration name="ft_irc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" RUN_TARGET_PROJECT_NAME="ft_irc" RUN_TARGET_NAME="ft_irc" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -81,6 +74,7 @@
       <workItem from="1621667259978" duration="15000" />
       <workItem from="1621667287117" duration="1726000" />
       <workItem from="1621748316295" duration="4093000" />
+      <workItem from="1621762723967" duration="113000" />
     </task>
     <servers />
   </component>
