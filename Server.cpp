@@ -1,7 +1,3 @@
-//
-// Created by Adeline Vivien on 4/24/21.
-//
-
 #include "Server.hpp"
 
 IRCServer::IRCServer(std::string file)
@@ -68,7 +64,7 @@ void IRCServer::start()
 	struct addrinfo *servinfo;        // указатель на результаты
 
 	FD_ZERO(&_master_set);
-	init_cmds(_this);
+	init_cmds(this);
 
 	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
 	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6

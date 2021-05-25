@@ -13,6 +13,7 @@ private:
 	int 		_fd;
 public:
 	Client(int fd);
+	virtual ~Client();
 	int getfd();
 	// change pass
 	// connect to serv

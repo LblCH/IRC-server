@@ -4,7 +4,7 @@ CC = clang++
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp Server.cpp Msg.cpp Client.cpp Channel.cpp Initcmds.cpp
+SRCS = main.cpp Server.cpp Msg.cpp Client.cpp Channel.cpp Initcmds.cpp Command.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

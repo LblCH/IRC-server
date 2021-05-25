@@ -50,4 +50,4 @@ void init_cmds(IRCServer server)
 	server._cmds["WHO"]			= cmd_who;
 	server._cmds["WHOIS"]		= cmd_whois;
 	server._cmds["WHOWAS"]		= cmd_whowas;
-}er
+}

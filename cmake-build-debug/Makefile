@@ -196,6 +196,60 @@ Client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Client.cpp.s
 .PHONY : Client.cpp.s
 
+Command.o: Command.cpp.o
+
+.PHONY : Command.o
+
+# target to build an object file
+Command.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.o
+.PHONY : Command.cpp.o
+
+Command.i: Command.cpp.i
+
+.PHONY : Command.i
+
+# target to preprocess a source file
+Command.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.i
+.PHONY : Command.cpp.i
+
+Command.s: Command.cpp.s
+
+.PHONY : Command.s
+
+# target to generate assembly for a file
+Command.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.s
+.PHONY : Command.cpp.s
+
+Initcmds.o: Initcmds.cpp.o
+
+.PHONY : Initcmds.o
+
+# target to build an object file
+Initcmds.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.o
+.PHONY : Initcmds.cpp.o
+
+Initcmds.i: Initcmds.cpp.i
+
+.PHONY : Initcmds.i
+
+# target to preprocess a source file
+Initcmds.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.i
+.PHONY : Initcmds.cpp.i
+
+Initcmds.s: Initcmds.cpp.s
+
+.PHONY : Initcmds.s
+
+# target to generate assembly for a file
+Initcmds.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.s
+.PHONY : Initcmds.cpp.s
+
 Msg.o: Msg.cpp.o
 
 .PHONY : Msg.o
@@ -292,6 +346,12 @@ help:
 	@echo "... Client.o"
 	@echo "... Client.i"
 	@echo "... Client.s"
+	@echo "... Command.o"
+	@echo "... Command.i"
+	@echo "... Command.s"
+	@echo "... Initcmds.o"
+	@echo "... Initcmds.i"
+	@echo "... Initcmds.s"
 	@echo "... Msg.o"
 	@echo "... Msg.i"
 	@echo "... Msg.s"
