@@ -105,7 +105,7 @@ void IRCServer::start()
 	}
 
 	freeaddrinfo(servinfo); // освобождаем связанный список
-	if (listen(_listener_fd, 5000) == -1)
+	if (listen(_listener_fd, 20) == -1)
 	{
 		fprintf(stderr, "listen error\n");
 		exit(1);
@@ -127,7 +127,7 @@ void *get_in_addr(struct sockaddr *sa)
 void IRCServer::work()
 {
 	int newfd;								// дескриптор для новых соединений
-	struct sockaddr_storage client_addr;	// адрес клиента
+	struct sockaddr client_addr;	// адрес клиента
 	socklen_t addr_size = sizeof client_addr;
 	char buf[512];							// буфер для сообщения
 	int nbytes, ready_fds;
@@ -135,7 +135,7 @@ void IRCServer::work()
 	timeval	timeout = {30, 0};
 
 	FD_ZERO(&_servers_set);
-	FD_ZERO(&_clients_set);
+	FD_ZERO(&_users_set);
 	FD_ZERO(&read_fds);
 
 	for(;;)
@@ -155,17 +155,19 @@ void IRCServer::work()
 				{
 					// обрабатываем новые соединения
 					addr_size = sizeof client_addr;
-					newfd = accept(_listener_fd, (struct sockaddr *)&client_addr, &addr_size);
-					char *name;
-					name = inet_ntoa(((struct sockaddr_in *)(struct sockaddr *)&client_addr)->sin_addr);
-					printf("name = %s\n", ((struct sockaddr *)&client_addr)->sa_data);
+					newfd = accept(_listener_fd, &client_addr, &addr_size);
+//					char *name;
+//					name = inet_ntoa(((struct sockaddr_in *)&client_addr)->sin_addr);
+//					printf("name = %s\n", name);
 					fcntl(newfd, F_SETFL, O_NONBLOCK);
 					if (newfd == -1)
 						perror("accept error");
 					else
 					{
 						FD_SET(newfd, &_master_set); // добавляем в мастер-сет
-//						_client_list.push_back(newfd);  // добавляем нового клиента в вектор
+//						Client ss(newfd);
+						_client_list.insert(std::pair<int, Client>(newfd,Client(newfd)));
+						_client_buffer_in.insert(std::pair<int, std::string>(newfd,std::string()));
 						if (newfd > _fd_max)
 							_fd_max = newfd;
 					}
@@ -188,7 +190,9 @@ void IRCServer::work()
 					else
 					{
 //						client._buf += (std::string)buf;
-						std::cout << "IRC: new msg from " << newfd << std::endl;
+						std::cout << "IRC: new msg from " << _client_list.find(i)->second.getfd() << std::endl;
+						_client_buffer_in.find(i)->second.append(buf);
+						_processing_msg(_client_buffer_in.find(i)->second);
 						// у нас есть какие-то данные от клиента
 						for (int j = 0; j <= _fd_max; j++)
 						{
@@ -207,7 +211,21 @@ void IRCServer::work()
 						}
 					}
 				}
+				ready_fds--;
 			}
 		}
 	}
+}
+
+void IRCServer::_processing_msg(std::string buffer)
+{
+	int pos;
+
+	if((pos = buffer.find("\r\n", 0)) == std::string::npos)
+	{
+		std::cout << "Non finished " << buffer << std::endl;
+//		return;
+	}
+	Msg msg(buffer.substr(0));
+	std::cout << "Op" << std::endl;
 }

@@ -12,7 +12,8 @@ private:
 	std::string _buf;
 	int 		_fd;
 public:
-//	Client(int fd, );
+	Client(int fd);
+	int getfd();
 	// change pass
 	// connect to serv
 	// disconnect from serv
@@ -28,8 +29,8 @@ public:
 class Server : public Client
 {
 private:
-	std::string _password;
-//	std::string
+	int hopcount;
+
 };
 
 #endif //FT_IRC_CLIENT_H

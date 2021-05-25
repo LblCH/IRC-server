@@ -7,7 +7,9 @@
 #include <unistd.h>
 #include <fstream>
 #include <vector>
+#include <map>
 #include "define_error.h"
+#include "define_common.hpp"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <string.h>
@@ -19,9 +21,8 @@
 #include "Msg.hpp"
 #include "Channel.hpp"
 
-class msg;
-class client;
-class channel;
+class Client;
+class Msg;
 
 class IRCServer
 {
@@ -36,41 +37,29 @@ private:
 	std::string _serv_admin_email;
 	std::string _serv_admin_other_inform;
 	std::string _serv_network_name;
-
 	std::string _serv_directory;
 	int			_listener_fd;
 	int			_key;
 
-	/// users_list ??
-	/*
-	std::string const _serv_target_host_addr; //  accepts CIDR format
-	std::string const _serv_password;
-	std::string const _serv_target_host_name;
-	std::string const _serv_target_port;
-	std::string const _serv_target_class;
-	std::string const _serv_target_flags;
-	*/
-
 ////	socket?????? ///
 	fd_set _master_set;
 	fd_set _servers_set;							//// connected servers fds
-	fd_set _clients_set;							//// connected clients fds
+	fd_set _users_set;
+	fd_set _services_set;							//// connected clients fds
 	int		_fd_max;
 
-	std::vector<msg*> _msg_list;					//// message queue on this server (vector)
+	std::vector<Msg> _msg_list;					//// message queue on this server (vector)
 
-	std::vector<Client> _client_list;		//// active clients on this server (vector)
+	std::vector<Channel*> _channel_active_list;		//// active channels on this server (vector)
 
-	std::vector<channel*> _channel_active_list;		//// active channels on this server (vector)
+	std::map<int, std::string> _client_buffer_in;
+	std::map<int, std::string> _client_buffer_out;
 
+	std::map<int, Client> _client_list;
 
-	typedef struct _serv_s_channel					//// channel struct
-	{
-		std::string _channel_name;
-		std::string _channel_type;
-		struct _serv_s_channel* next;
-	}				_serv_t_channel;
-	std::vector<_serv_s_channel*> _server_channel_list;
+	std::vector<Channel> _server_channel_list;
+
+	void _processing_msg(std::string);
 
 public:
 	IRCServer();
