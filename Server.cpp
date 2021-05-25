@@ -68,6 +68,7 @@ void IRCServer::start()
 	struct addrinfo *servinfo;        // указатель на результаты
 
 	FD_ZERO(&_master_set);
+	init_cmds(_this);
 
 	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
 	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6
@@ -168,6 +169,7 @@ void IRCServer::work()
 //						Client ss(newfd);
 						_client_list.insert(std::pair<int, Client>(newfd,Client(newfd)));
 						_client_buffer_in.insert(std::pair<int, std::string>(newfd,std::string()));
+						_client_buffer_out.insert(std::pair<int, std::string>(newfd,std::string()));
 						if (newfd > _fd_max)
 							_fd_max = newfd;
 					}
@@ -192,23 +194,7 @@ void IRCServer::work()
 //						client._buf += (std::string)buf;
 						std::cout << "IRC: new msg from " << _client_list.find(i)->second.getfd() << std::endl;
 						_client_buffer_in.find(i)->second.append(buf);
-						_processing_msg(_client_buffer_in.find(i)->second);
-						// у нас есть какие-то данные от клиента
-						for (int j = 0; j <= _fd_max; j++)
-						{
-							// отсылаем данные всем!
-							if (FD_ISSET(j, &_master_set))
-							{
-								// кроме слушающего сокета и клиента, от которого данные пришли
-								if (j != _listener_fd && j != i)
-								{
-									if (send(j, buf, nbytes, 0) == -1)
-									{
-										perror("send error");
-									}
-								}
-							}
-						}
+						_processing_msg(_client_buffer_in.find(i)->second, i, nbytes);
 					}
 				}
 				ready_fds--;
@@ -217,15 +203,38 @@ void IRCServer::work()
 	}
 }
 
-void IRCServer::_processing_msg(std::string buffer)
+void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 {
 	int pos;
+	const char *out_buf;
 
 	if((pos = buffer.find("\r\n", 0)) == std::string::npos)
 	{
 		std::cout << "Non finished " << buffer << std::endl;
 //		return;
 	}
-	Msg msg(buffer.substr(0));
-	std::cout << "Op" << std::endl;
+	Msg msg(buffer);
+	_client_buffer_in.find(fd)->second.clear();
+
+	// у нас есть какие-то данные от клиента
+	for (int j = 0; j <= _fd_max; j++)
+	{
+		// отсылаем данные всем!
+		if (FD_ISSET(j, &_master_set))
+		{
+			// кроме слушающего сокета и клиента, от которого данные пришли
+			if (j != _listener_fd && j != fd)
+			{
+				buffer += msg.get_prefix();
+				int i = 0;
+				while(msg.get_params()[i].size() > 0)
+					buffer += msg.get_params()[i++];
+				out_buf = buffer.c_str();
+				if (send(j, out_buf, nbytes, 0) == -1)
+				{
+					perror("send error");
+				}
+			}
+		}
+	}
 }

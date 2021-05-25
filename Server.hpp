@@ -27,6 +27,7 @@ class Msg;
 class IRCServer
 {
 private:
+	typedef std::MAP<std::string, Command>	t_cmdmap;
 	std::string _serv_host_name;
 	std::string _serv_ip_serv;
 	std::string _geographic_location; // 	RU = 643 // ISO-3166-1 // https://ru.wikipedia.org/wiki/ISO_3166-1
@@ -52,6 +53,7 @@ private:
 
 	std::vector<Channel*> _channel_active_list;		//// active channels on this server (vector)
 
+	std::map<std::string, >
 	std::map<int, std::string> _client_buffer_in;
 	std::map<int, std::string> _client_buffer_out;
 
@@ -59,9 +61,10 @@ private:
 
 	std::vector<Channel> _server_channel_list;
 
-	void _processing_msg(std::string);
+	void _processing_msg(std::string, int fd, int nbytes);
 
 public:
+	t_cmdmap	_cmds;
 	IRCServer();
 	IRCServer(std::string file); /// create new server with config file;
 	~IRCServer();
@@ -78,5 +81,5 @@ public:
 	// ???
 };
 
-
+void init_cmds(IRCServer);
 #endif //FT_IRC_SERVER_HPP

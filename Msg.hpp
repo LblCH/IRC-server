@@ -9,10 +9,12 @@ class Msg
 private:
 	std::string _msg_prefix;
 	std::string _msg_command;
-	std::string const *_msg_params;
+	std::string *_msg_params;
 public:
 	Msg(std::string message);
 	~Msg();
+	std::string *get_params();
+	std::string get_prefix();
 };
 
 

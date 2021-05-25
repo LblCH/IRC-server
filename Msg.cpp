@@ -10,7 +10,7 @@ Msg::Msg(std::string message)
 	{
 		pos_sep = message.find(" ", prev_sep);
 		_msg_prefix = message.substr(1, pos_sep);
-		prev_sep = pos_sep;
+		prev_sep = pos_sep + 1;
 	}
 	if ((message.substr(pos_sep, message.size() - pos_sep)).size() > 0)
 	{
@@ -27,11 +27,31 @@ Msg::Msg(std::string message)
 			if (_msg_params != nullptr)
 				delete[] _msg_params;
 			_msg_params = temp_params;
-			prev_sep = pos_sep;
-			std::cout << "Loop wtf" << _msg_params[param_count - 1] << std::endl;
+			prev_sep = pos_sep + 1;
 		}
+		param_count = (param_count > 0) ? param_count + 1 : 0;
+		temp_params = new std::string[param_count];
+		for (int i = 0; i < param_count - 1; i++)
+			temp_params[i] = _msg_command[i];
+		temp_params[param_count - 1] = message.substr(prev_sep, pos_sep);
+		if (_msg_params != nullptr)
+			delete[] _msg_params;
+		_msg_params = temp_params;
 	}
 }
 
 Msg::~Msg()
-{}
+{
+	if (_msg_params != nullptr)
+		delete[] _msg_params;
+}
+
+std::string *Msg::get_params()
+{
+	return _msg_params;
+}
+
+std::string Msg::get_prefix()
+{
+	return _msg_prefix;
+}
