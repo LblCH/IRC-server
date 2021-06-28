@@ -10,3 +10,8 @@ int Client::getfd()
 {
 	return _fd;
 }
+
+Client::~Client()
+{
+
+};

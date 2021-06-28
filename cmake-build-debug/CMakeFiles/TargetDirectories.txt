@@ -1,3 +1,3 @@
-/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles/IRCC.dir
+/Users/mklotz/Desktop/ft_irc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mklotz/Desktop/ft_irc/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mklotz/Desktop/ft_irc/cmake-build-debug/CMakeFiles/IRCC.dir

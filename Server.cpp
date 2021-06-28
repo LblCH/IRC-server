@@ -227,3 +227,6 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 		}
 	}
 }
+
+IRCServer::IRCServer() {
+}

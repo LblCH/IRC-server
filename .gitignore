@@ -3,4 +3,4 @@ ircserv
 /cmake-build-debug
 CMakeLists.txt
 /.idea
-/cmake-build-debug/
+/cmake-build-debug/*
