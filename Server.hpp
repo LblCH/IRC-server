@@ -71,6 +71,7 @@ public:
 	void announce();  /// show server fields
 	void start();
 	void work();
+    Client getClient(int);
 	void stop();
 	// post msg;
 	// add channel

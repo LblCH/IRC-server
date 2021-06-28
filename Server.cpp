@@ -200,33 +200,38 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 		std::cout << "Non finished " << buffer << std::endl;
 		return;
 	}
-	Msg msg(buffer);
+	Msg msg(buffer.substr(0, pos));
 	_client_buffer_in.find(fd)->second.clear();
 	buffer.clear();
 //	std::cout << buffer << std::endl;
 	// у нас есть какие-то данные от клиента
-	for (int j = 0; j <= _fd_max; j++)
-	{
-		// отсылаем данные всем!
-		if (FD_ISSET(j, &_master_set))
-		{
-			// кроме слушающего сокета и клиента, от которого данные пришли
-			if (j != _listener_fd && j != fd)
-			{
-				buffer += msg.get_prefix();
-				buffer += ": ";
-				int i = 0;
-				while(msg.get_params()[i].size() > 0)
-					buffer += msg.get_params()[i++];
-				out_buf = buffer.c_str();
-				if (send(j, out_buf, nbytes, 0) == -1)
-				{
-					perror("send error");
-				}
-			}
-		}
-	}
+//	for (int j = 0; j <= _fd_max; j++)
+//	{
+//		// отсылаем данные всем!
+//		if (FD_ISSET(j, &_master_set))
+//		{
+//			// кроме слушающего сокета и клиента, от которого данные пришли
+//			if (j != _listener_fd && j != fd)
+//			{
+////				buffer += msg.get_prefix();
+////				buffer += ": ";
+//				int i = 0;
+//				while(msg.get_params()[i].size() > 0)
+//					buffer += msg.get_params()[i++];
+//				out_buf = buffer.c_str();
+//				if (send(j, out_buf, nbytes, 0) == -1)
+//				{
+//					perror("send error");
+//				}
+//			}
+//		}
+//	}
 }
 
 IRCServer::IRCServer() {
+}
+
+Client IRCServer::getClient(int fd) {
+    Client client = _client_list.find(fd)->second;
+    return (client);
 }

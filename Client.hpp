@@ -6,16 +6,17 @@
 class Client
 {
 private:
-	std::string const _name;
+	std::string _name;
 	std::string _host_name;
 	std::string _pass;
-	std::string _buf;
 	int 		_fd;
 public:
 	Client(int fd);
 	~Client();
 	int getfd();
-	// change pass
+
+    void setName(const std::string &name);
+    // change pass
 	// connect to serv
 	// disconnect from serv
 	// send msg

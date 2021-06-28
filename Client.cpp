@@ -11,7 +11,7 @@ int Client::getfd()
 	return _fd;
 }
 
-Client::~Client()
-{
+void Client::setName(const std::string &name) {
+    _name = name;
+}
 
-};

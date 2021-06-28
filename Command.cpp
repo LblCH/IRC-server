@@ -16,7 +16,7 @@ void Command::cmd_join(int fd, std::string *params, IRCServer *server) {
 }
 
 void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
-    return;
+
 }
 
 void Command::cmd_kill(int fd, std::string *params, IRCServer *server) {
@@ -24,7 +24,9 @@ void Command::cmd_kill(int fd, std::string *params, IRCServer *server) {
 }
 
 void Command::cmd_nick(int fd, std::string *params, IRCServer *server) {
-
+    Client client = server->getClient(fd);
+    if (params != nullptr && !params[0].empty())
+        client.setName(params[0]);
 }
 
 void Command::cmd_notice(int fd, std::string *params, IRCServer *server) {
