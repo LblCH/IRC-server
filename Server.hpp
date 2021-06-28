@@ -45,7 +45,6 @@ private:
 	int			_key;
 
 ////	socket?????? ///
-	fd_set _master_set;
 	fd_set _servers_set;							//// connected servers fds
 	fd_set _users_set;								//// connected clients fds
 	int		_fd_max;
@@ -64,6 +63,7 @@ private:
 	void _processing_msg(std::string, int fd, int nbytes);
 
 public:
+	fd_set _master_set;
 	t_cmdmap	_cmds;
 	IRCServer(std::string file); /// create new server with config file;
 	virtual ~IRCServer();
@@ -72,6 +72,7 @@ public:
 	void work();
 	void stop();
 	Client *getClient(int fd);
+	Client *getClientByName(const std::string& name);
 	// post msg;
 	// add channel
 

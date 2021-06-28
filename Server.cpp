@@ -238,6 +238,23 @@ IRCServer::IRCServer() {
 }
 
 Client *IRCServer::getClient(int fd) {
-    Client *client = _client_list.find(fd)->second;
-    return (client);
+    std::map<int, Client*>::iterator it;
+    it = _client_list.find(fd);
+    if (it != _client_list.end())
+        return (it->second);
+    return (nullptr);
 }
+
+Client *IRCServer::getClientByName(const std::string& name) {
+    for (int j = 0; j <= _fd_max; j++)
+    {
+        if (FD_ISSET(j, &_master_set))
+        {
+            Client *client = getClient(j);
+            if (client != nullptr && client->getName() == name)
+                return (client);
+		}
+    }
+    return (nullptr);
+}
+
