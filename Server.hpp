@@ -24,6 +24,7 @@
 #include "Command.hpp"
 
 class Client;
+class Channel;
 class Msg;
 
 class IRCServer

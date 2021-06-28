@@ -204,9 +204,9 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 		_client_buffer_in.find(fd)->second.erase(0, pos + 2);
 		buffer.erase(0, pos + 2);
 		if(_cmds.find(msg.getMsgCommand()) != _cmds.end())
-		{
+			if (msg.getMsgCommand() == "USER" || msg.getMsgCommand() == "NICK" ||
+					msg.getMsgCommand() == "PASS" || !_client_list.find(fd)->second->getRealName().empty())
 			_cmds[msg.getMsgCommand()](fd, msg.get_params(), this);
-		}
 	}
 	buffer.clear();
 }

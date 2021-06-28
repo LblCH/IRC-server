@@ -16,6 +16,8 @@ private:
 public:
     int getOperator() const;
 
+	const std::string &getRealName() const;
+
 public:
 	Client(int fd);
 	~Client();
