@@ -178,7 +178,7 @@ void IRCServer::work()
 					}
 					else
 					{
-//						client._buf += (std::string)buf;
+						buf[nbytes] = '\0';
 						std::cout << "IRC: new msg from " << _client_list.find(i)->second.getfd() << std::endl;
 						_client_buffer_in.find(i)->second.append(buf);
 						_processing_msg(_client_buffer_in.find(i)->second, i, nbytes);
@@ -192,7 +192,7 @@ void IRCServer::work()
 
 void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 {
-	int pos;
+	unsigned long pos;
 	const char *out_buf;
 
 	if((pos = buffer.find("\r\n", 0)) == std::string::npos)
@@ -200,9 +200,12 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 		std::cout << "Non finished " << buffer << std::endl;
 		return;
 	}
-	Msg msg(buffer.substr(0, pos));
-	_client_buffer_in.find(fd)->second.clear();
-	buffer.clear();
+	else
+	{
+		Msg msg(buffer.substr(0, pos));
+		_client_buffer_in.find(fd)->second.erase(0, pos + 2);
+		buffer.clear();
+	}
 //	std::cout << buffer << std::endl;
 	// у нас есть какие-то данные от клиента
 //	for (int j = 0; j <= _fd_max; j++)
@@ -213,8 +216,8 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 //			// кроме слушающего сокета и клиента, от которого данные пришли
 //			if (j != _listener_fd && j != fd)
 //			{
-////				buffer += msg.get_prefix();
-////				buffer += ": ";
+//				buffer += msg.get_prefix();
+//				buffer += ": ";
 //				int i = 0;
 //				while(msg.get_params()[i].size() > 0)
 //					buffer += msg.get_params()[i++];
