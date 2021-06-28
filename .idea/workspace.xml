@@ -20,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/Msg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Msg.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       <workItem from="1621982701770" duration="1969000" />
       <workItem from="1624881879791" duration="2230000" />
       <workItem from="1624886381183" duration="1074000" />
-      <workItem from="1624891011541" duration="8604000" />
+      <workItem from="1624891011541" duration="11064000" />
     </task>
     <servers />
   </component>
@@ -112,16 +111,6 @@
           <url>file://$PROJECT_DIR$/Server.hpp</url>
           <line>3</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Server.cpp</url>
-          <line>197</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Server.cpp</url>
-          <line>202</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

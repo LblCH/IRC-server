@@ -154,7 +154,7 @@ void IRCServer::work()
 					{
 						FD_SET(newfd, &_master_set); // добавляем в мастер-сет
 //						Client ss(newfd);
-						_client_list.insert(std::pair<int, Client>(newfd,Client(newfd)));
+						_client_list.insert(std::pair<int, Client*>(newfd, new Client(newfd)));
 						_client_buffer_in.insert(std::pair<int, std::string>(newfd,std::string()));
 						_client_buffer_out.insert(std::pair<int, std::string>(newfd,std::string()));
 						if (newfd > _fd_max)
@@ -169,8 +169,12 @@ void IRCServer::work()
 					{
 						// получена ошибка или соединение закрыто клиентом
 						if (nbytes == 0)
+                        {
 							// соединение закрыто
+						    //delete getClient(i);
+						    _client_list.erase(i);
 							printf("IRC: socket %d closed\n", i);
+                        }
 						else
 							perror("recv error");
 						close(i); 				// bye!
@@ -179,7 +183,7 @@ void IRCServer::work()
 					else
 					{
 						buf[nbytes] = '\0';
-						std::cout << "IRC: new msg from " << _client_list.find(i)->second.getfd() << std::endl;
+						std::cout << "IRC: new msg from " << _client_list.find(i)->second->getfd() << std::endl;
 						_client_buffer_in.find(i)->second.append(buf);
 						_processing_msg(_client_buffer_in.find(i)->second, i, nbytes);
 					}
@@ -203,6 +207,10 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 	else
 	{
 		Msg msg(buffer.substr(0, pos));
+		if (msg.getMsgCommand() == "NICK")
+		    Command::cmd_nick(fd, msg.get_params(), this);
+		else
+            printf("USER = %s\n", _client_list[fd]->getName().c_str());
 		_client_buffer_in.find(fd)->second.erase(0, pos + 2);
 		buffer.clear();
 	}
@@ -234,7 +242,7 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 IRCServer::IRCServer() {
 }
 
-Client IRCServer::getClient(int fd) {
-    Client client = _client_list.find(fd)->second;
+Client *IRCServer::getClient(int fd) {
+    Client *client = _client_list.find(fd)->second;
     return (client);
 }

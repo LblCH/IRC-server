@@ -29,3 +29,7 @@ std::string *Msg::get_params()
 {
 	return _msg_params;
 }
+
+const std::string &Msg::getMsgCommand() const {
+    return _msg_command;
+}

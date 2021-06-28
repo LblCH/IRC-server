@@ -16,6 +16,8 @@ public:
 	int getfd();
 
     void setName(const std::string &name);
+
+    const std::string &getName() const;
     // change pass
 	// connect to serv
 	// disconnect from serv

@@ -4,7 +4,9 @@ Client::Client(int fd) : _fd(fd)
 {}
 
 Client::~Client()
-{}
+{
+    delete this;
+}
 
 int Client::getfd()
 {
@@ -13,5 +15,9 @@ int Client::getfd()
 
 void Client::setName(const std::string &name) {
     _name = name;
+}
+
+const std::string &Client::getName() const {
+    return _name;
 }
 

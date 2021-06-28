@@ -58,7 +58,7 @@ private:
 	std::map<int, std::string> _client_buffer_in;
 	std::map<int, std::string> _client_buffer_out;
 
-	std::map<int, Client> _client_list;
+	std::map<int, Client*> _client_list;
 
 	std::vector<Channel> _server_channel_list;
 
@@ -71,8 +71,8 @@ public:
 	void announce();  /// show server fields
 	void start();
 	void work();
-    Client getClient(int);
 	void stop();
+	Client *getClient(int fd);
 	// post msg;
 	// add channel
 
