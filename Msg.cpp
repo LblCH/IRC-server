@@ -10,6 +10,7 @@ Msg::Msg(std::string message)
 	{
 		pos_sep = message.find(" ", prev_sep);
 		_msg_prefix = message.substr(1, pos_sep);
+		std::cout << _msg_prefix << std::endl;
 		prev_sep = pos_sep + 1;
 	}
 	if ((message.substr(pos_sep, message.size() - pos_sep)).size() > 0)
@@ -24,6 +25,7 @@ Msg::Msg(std::string message)
 			for (int i = 0; i < param_count - 1; i++)
 				temp_params[i] = _msg_command[i];
 			temp_params[param_count - 1] = message.substr(prev_sep, pos_sep);
+			std::cout <<  temp_params[param_count - 1].size() << std::endl;
 			if (_msg_params != nullptr)
 				delete[] _msg_params;
 			_msg_params = temp_params;
@@ -33,7 +35,7 @@ Msg::Msg(std::string message)
 		temp_params = new std::string[param_count];
 		for (int i = 0; i < param_count - 1; i++)
 			temp_params[i] = _msg_command[i];
-		temp_params[param_count - 1] = message.substr(prev_sep, pos_sep);
+		temp_params[param_count - 1] = message.substr(prev_sep);
 		if (_msg_params != nullptr)
 			delete[] _msg_params;
 		_msg_params = temp_params;

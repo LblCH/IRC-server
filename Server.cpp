@@ -64,7 +64,7 @@ void IRCServer::start()
 	struct addrinfo *servinfo;        // указатель на результаты
 
 	FD_ZERO(&_master_set);
-	init_cmds(this);
+//	init_cmds(this);
 
 	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
 	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6
@@ -84,7 +84,7 @@ void IRCServer::start()
 		fprintf(stderr, "Getting socket_fd error\n");
 		exit(1);
 	}
-//	fcntl(_listener_fd, F_SETFL, O_NONBLOCK);
+	fcntl(_listener_fd, F_SETFL, O_NONBLOCK);
 
 	// избавляемся от надоедливой ошибки «Address already in use»
 	int yes = 1;
@@ -110,15 +110,6 @@ void IRCServer::start()
 	FD_SET(_listener_fd, &_master_set);
 	_fd_max = _listener_fd;
 	std::cout << "Server started" << std::endl;
-}
-
-void *get_in_addr(struct sockaddr *sa)
-{
-	if (sa->sa_family == AF_INET)
-	{
-		return &(((struct sockaddr_in*)sa)->sin_addr);
-	}
-	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
 void IRCServer::work()
@@ -207,11 +198,12 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 	if((pos = buffer.find("\r\n", 0)) == std::string::npos)
 	{
 		std::cout << "Non finished " << buffer << std::endl;
-//		return;
+		return;
 	}
 	Msg msg(buffer);
 	_client_buffer_in.find(fd)->second.clear();
-
+	buffer.clear();
+//	std::cout << buffer << std::endl;
 	// у нас есть какие-то данные от клиента
 	for (int j = 0; j <= _fd_max; j++)
 	{
@@ -222,6 +214,7 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 			if (j != _listener_fd && j != fd)
 			{
 				buffer += msg.get_prefix();
+				buffer += ": ";
 				int i = 0;
 				while(msg.get_params()[i].size() > 0)
 					buffer += msg.get_params()[i++];

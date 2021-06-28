@@ -23,12 +23,13 @@
 #include "Command.hpp"
 
 class Client;
+//class Command;
 class Msg;
 
 class IRCServer
 {
 private:
-	typedef std::map<std::string, Command>	t_cmdmap;
+//	typedef std::map<std::string, Command>	t_cmdmap;
 	std::string _serv_host_name;
 	std::string _serv_ip_serv;
 	std::string _geographic_location; // 	RU = 643 // ISO-3166-1 // https://ru.wikipedia.org/wiki/ISO_3166-1
@@ -64,7 +65,7 @@ private:
 	void _processing_msg(std::string, int fd, int nbytes);
 
 public:
-	t_cmdmap	_cmds;
+//	t_cmdmap	_cmds;
 	IRCServer();
 	IRCServer(std::string file); /// create new server with config file;
 	virtual ~IRCServer();
@@ -79,6 +80,7 @@ public:
 	// add client
 	// check client
 	// ???
+	// PROFIT
 };
 
 void init_cmds(IRCServer *);
