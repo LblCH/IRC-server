@@ -1,24 +1,19 @@
-#include <iostream>
-
-
 #ifndef FT_IRC_CHANNEL_HPP
 #define FT_IRC_CHANNEL_HPP
 
+#include "Server.hpp"
 
 class Channel
 {
 private:
+	Channel();
 	std::string const _channel_name;
-	std::string const _channel_type;
-	std::string const _channel_op_user;
+	std::set<int> _clients;
 public:
-	// create channel
-	// destroy channel
-	// change op_user
-	// connect channel from destroy
-	/// change type channel ??
-	// broadcast msg
-	//
+	explicit Channel(const std::string &channelName);
+	virtual ~Channel();
+	void AddClient(int fd);
+	void RemoveClient(int fd);
 };
 
 

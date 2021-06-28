@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <set>
 #include "define_error.h"
 #include "define_common.hpp"
 #include <sys/types.h>
@@ -51,14 +52,12 @@ private:
 
 	std::vector<Msg> _msg_list;					//// message queue on this server (vector)
 
-	std::vector<Channel*> _channel_active_list;		//// active channels on this server (vector)
+	std::vector<Channel*> _channel_list;		//// active channels on this server (vector)
 
 	std::map<int, std::string> _client_buffer_in;
 	std::map<int, std::string> _client_buffer_out;
 
 	std::map<int, Client*> _client_list;
-
-	std::vector<Channel> _server_channel_list;
 
 	void _processing_msg(std::string, int fd, int nbytes);
 

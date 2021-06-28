@@ -7,7 +7,6 @@
 class Msg
 {
 private:
-//	std::string _msg_prefix;
 	std::string _msg_command;
 public:
     const std::string &getMsgCommand() const;
