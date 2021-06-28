@@ -47,8 +47,7 @@ private:
 ////	socket?????? ///
 	fd_set _master_set;
 	fd_set _servers_set;							//// connected servers fds
-	fd_set _users_set;
-	fd_set _services_set;							//// connected clients fds
+	fd_set _users_set;								//// connected clients fds
 	int		_fd_max;
 
 	std::vector<Msg> _msg_list;					//// message queue on this server (vector)

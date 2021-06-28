@@ -197,25 +197,28 @@ void IRCServer::work()
 void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 {
 	unsigned long pos;
-	const char *out_buf;
 
-	if((pos = buffer.find("\r\n", 0)) == std::string::npos)
+	while ((pos = buffer.find("\r\n", 0)) != std::string::npos)
 	{
-		std::cout << "Non finished " << buffer << std::endl;
-		return;
-	}
-	else
-	{
+//		std::cout << "Non finished " << buffer << std::endl;
+//		return;
+//	}
+//	else
+//	{
 		Msg msg(buffer.substr(0, pos));
-		if (msg.getMsgCommand() == "NICK")
-		    Command::cmd_nick(fd, msg.get_params(), this);
-		else
-            printf("USER = %s\n", _client_list[fd]->getName().c_str());
+//		if (msg.getMsgCommand() == "NICK")
+//		    Command::cmd_nick(fd, msg.get_params(), this);
+//		else
+//            printf("USER = %s\n", _client_list[fd]->getName().c_str());
 		_client_buffer_in.find(fd)->second.erase(0, pos + 2);
-		buffer.clear();
+		if(this->_cmds.find(msg.getMsgCommand()) != _cmds.end())
+		{
+			_cmds[msg.getMsgCommand()](fd, msg.get_params(), this);
+		}
 	}
+	buffer.clear();
 //	std::cout << buffer << std::endl;
-	// у нас есть какие-то данные от клиента
+//	 у нас есть какие-то данные от клиента
 //	for (int j = 0; j <= _fd_max; j++)
 //	{
 //		// отсылаем данные всем!
