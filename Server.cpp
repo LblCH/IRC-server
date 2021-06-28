@@ -64,7 +64,7 @@ void IRCServer::start()
 	struct addrinfo *servinfo;        // указатель на результаты
 
 	FD_ZERO(&_master_set);
-//	init_cmds(this);
+	init_cmds(this);
 
 	memset(&hints, 0, sizeof hints); // убедимся, что структура пуста
 	hints.ai_family = AF_UNSPEC;        // неважно, IPv4 или IPv6
@@ -200,18 +200,10 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 
 	while ((pos = buffer.find("\r\n", 0)) != std::string::npos)
 	{
-//		std::cout << "Non finished " << buffer << std::endl;
-//		return;
-//	}
-//	else
-//	{
 		Msg msg(buffer.substr(0, pos));
-//		if (msg.getMsgCommand() == "NICK")
-//		    Command::cmd_nick(fd, msg.get_params(), this);
-//		else
-//            printf("USER = %s\n", _client_list[fd]->getName().c_str());
 		_client_buffer_in.find(fd)->second.erase(0, pos + 2);
-		if(this->_cmds.find(msg.getMsgCommand()) != _cmds.end())
+		buffer.erase(0, pos + 2);
+		if(_cmds.find(msg.getMsgCommand()) != _cmds.end())
 		{
 			_cmds[msg.getMsgCommand()](fd, msg.get_params(), this);
 		}
