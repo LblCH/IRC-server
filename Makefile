@@ -26,6 +26,7 @@ $(NAME): $(OBJS)
 
 $(BONUS): $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) -o $(BONUS) $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) bot.cpp -o client
 
 clean:
 	@echo "\033[0;32m"
@@ -38,7 +39,7 @@ fclean:
 	@echo "\nDeleting objects..."
 	@rm -f $(OBJS) $(BONUS_OBJS)
 	@echo "\nDeleting executable..."
-	@rm -f $(NAME) $(BONUS)
+	@rm -f $(NAME) $(BONUS) client
 	@echo "\033[0m"
 
 re: fclean all

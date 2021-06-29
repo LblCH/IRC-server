@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		if (stroka.find("PRIVMSG #bot :bot") != std::string::npos)
 		{
 			printf("test\n");
-			send(sockfd, "PRIVMSG #bot :4e nado pes\r\n", 29, 0);
+			send(sockfd, "PRIVMSG #bot :Hello im a so simple bot!\r\n", 43, 0);
 		}
 	}
 
