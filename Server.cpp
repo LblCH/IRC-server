@@ -50,6 +50,9 @@ IRCServer::IRCServer(const std::string& file, int argc, char** argv)
 	_key = 0;
 }
 
+IRCServer::IRCServer() {
+}
+
 IRCServer::~IRCServer()
 {
 	std::cout << "Destruct serv" << std::endl;
@@ -186,6 +189,7 @@ void IRCServer::work()
                         {
 							// соединение закрыто
 						    //delete getClient(i);
+                            getClient(i)->leaveChannels();
 						    _client_list.erase(i);
 							printf("IRC: socket %d closed\n", i);
                         }
@@ -225,9 +229,6 @@ void IRCServer::_processing_msg(std::string buffer, int fd, int nbytes)
 	buffer.clear();
 }
 
-IRCServer::IRCServer() {
-}
-
 Client *IRCServer::getClient(int fd) {
     std::map<int, Client*>::iterator it;
     it = _client_list.find(fd);
@@ -247,6 +248,22 @@ Client *IRCServer::getClientByName(const std::string& name) {
 		}
     }
     return (nullptr);
+}
+
+Channel *IRCServer::getChannel(std::string name) {
+    std::map<std::string, Channel*>::iterator it;
+    it = _channel_list.find(name);
+    if (it != _channel_list.end())
+        return (it->second);
+    return (nullptr);
+}
+
+void IRCServer::addChannel(std::string name, int fd) {
+    Channel *channel = getChannel(name);
+    if (channel == nullptr)
+        _channel_list[name] = new Channel(name, fd, this);
+    else
+        channel->AddClient(fd);
 }
 
 const std::string &IRCServer::getServPass() const

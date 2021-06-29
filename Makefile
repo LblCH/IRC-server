@@ -2,19 +2,19 @@ NAME = ircserv
 
 CC = clang++
 
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.cpp Server.cpp Msg.cpp Client.cpp Channel.cpp Initcmds.cpp Command.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 $(%.o): $(%.cpp) $(%.hpp)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:
 	@echo "\033[0;32m"

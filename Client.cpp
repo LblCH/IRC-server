@@ -57,3 +57,18 @@ void Client::setPass(const std::string &pass)
 {
 	_pass = pass;
 }
+
+void Client::addChanel(Channel *channel) {
+    _channel_list[channel->getChannelName()] = channel;
+}
+
+void Client::leaveChannels() {
+    std::map<std::string , Channel *>::iterator it = _channel_list.begin();
+    while (it != _channel_list.end())
+    {
+        Channel *channel = it->second;
+        channel->RemoveClient(_fd);
+        channel->sendMessage(_fd, "LEAVE", channel->getChannelName());
+        it++;
+    }
+}

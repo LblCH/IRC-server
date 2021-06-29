@@ -17,7 +17,8 @@ void Command::cmd_join(int fd, std::string *params, IRCServer *server) {
     {
         if (params[0][0] == '#')
         {
-            
+            server->addChannel(params[0], fd);
+            client->addChanel(server->getChannel(params[0]));
         } else
             makeError("476", params[0], "Invalid channel name", fd, server);
     } else
@@ -26,7 +27,7 @@ void Command::cmd_join(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
     Client *client = server->getClient(fd);
-    if (!params[0].empty() && !params[1].empty() && !params[2].empty()
+    if (params != nullptr && !params[0].empty() && !params[1].empty() && !params[2].empty()
     && !params[3].empty())
     {
         client->setHostName(params[0]);
@@ -38,7 +39,7 @@ void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_kill(int fd, std::string *params, IRCServer *server) {
     Client *client = server->getClient(fd);
-    if (client->getOperator() == 1 && !params[0].empty() && !params[1].empty())
+    if (params != nullptr && client->getOperator() == 1 && !params[0].empty() && !params[1].empty())
     {
         Client *delete_client = server->getClientByName(params[0]);
         if (delete_client != nullptr)
@@ -64,13 +65,24 @@ void Command::cmd_nick(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_notice(int fd, std::string *params, IRCServer *server) {
     Client *client = server->getClient(fd);
-    if (client != nullptr && !params[0].empty())
+    if (params != nullptr && client != nullptr && !params[0].empty())
     {
-        Client *other_client = server->getClientByName(params[0]);
-        if (other_client != nullptr)
+        if (params[0][0] == '#')
         {
-            std::string str = makeString(params, 1);
-            makeSucces("NOTICE", str, other_client->getfd(), server, fd);
+            Channel *channel = server->getChannel(params[0]);
+            if (channel != nullptr)
+            {
+                std::string str = makeString(params, 1);
+                channel->sendPrivMessage(fd, "NOTICE", str);
+            }
+        } else
+        {
+            Client *other_client = server->getClientByName(params[0]);
+            if (other_client != nullptr)
+            {
+                std::string str = makeString(params, 1);
+                makeSucces("NOTICE", str, other_client->getfd(), server, fd);
+            }
         }
     }
 }
@@ -100,15 +112,27 @@ void Command::cmd_pass(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_privmsg(int fd, std::string *params, IRCServer *server) {
     Client *client = server->getClient(fd);
-    if (client != nullptr && !params[0].empty() && !params[1].empty())
+    if (params != nullptr && client != nullptr && !params[0].empty() && !params[1].empty())
     {
-        Client *other_client = server->getClientByName(params[0]);
-        if (other_client != nullptr)
+        if (params[0][0] == '#')
         {
-            std::string str = makeString(params, 1);
-            makeSucces("PRIVMSG", str, other_client->getfd(), server, fd);
+            Channel *channel = server->getChannel(params[0]);
+            if (channel != nullptr)
+            {
+                std::string str = makeString(params, 1);
+                channel->sendPrivMessage(fd, "PRIVMSG", str);
+            } else
+                makeError("403", params[0], "No such channel", fd, server);
         } else
-            makeError("401", params[0], "No such nick", fd, server);
+        {
+            Client *other_client = server->getClientByName(params[0]);
+            if (other_client != nullptr)
+            {
+                std::string str = makeString(params, 1);
+                makeSucces("PRIVMSG", str, other_client->getfd(), server, fd);
+            } else
+                makeError("401", params[0], "No such nick", fd, server);
+        }
     } else
         makeError("461", "PRIVMSG", "Not enough parameters.", fd, server);
 }

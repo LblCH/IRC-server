@@ -6,17 +6,15 @@
 
 class Msg
 {
-private:
-	std::string _msg_command;
-public:
-    const std::string &getMsgCommand() const;
+    private:
+        std::string _msg_command;
+        std::string *_msg_params;
 
-private:
-    std::string *_msg_params;
-public:
-	Msg(const std::string& message);
-	~Msg();
-	std::string *get_params();
+    public:
+        Msg(const std::string& message);
+        ~Msg();
+        const std::string &getMsgCommand() const;
+        std::string *get_params();
 };
 
 
