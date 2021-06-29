@@ -90,7 +90,13 @@ void Command::cmd_oper(int fd, std::string *params, IRCServer *server) {
 }
 
 void Command::cmd_pass(int fd, std::string *params, IRCServer *server) {
-
+	Client *client = server->getClient(fd);
+	if (client->getRealName().empty())
+		makeError("462", "\b", "You may not reregister", fd, server);
+	if(params[0] != server->getServPass())
+		makeError("464", "\b", "Pass not correct", fd, server);
+	else
+		client->setPass(params[0]);
 }
 
 void Command::cmd_privmsg(int fd, std::string *params, IRCServer *server) {

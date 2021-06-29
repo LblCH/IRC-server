@@ -9,6 +9,7 @@ private:
 	std::string _name;
 	std::string _host_name;
 	std::string _real_name;
+	std::string _pass;
 	std::map<std::string , Channel *> _channel_list;
 public:
 	const std::map<std::string, Channel *> &getChannelList() const;
@@ -30,11 +31,9 @@ public:
 
     void setRealName(const std::string &realName);
 
-    void setFlags(const std::string &flags);
+	void setPass(const std::string &pass);
 
-    void setPass(const std::string &pass);
-
-    void setOperator(int oper);
+	void setOperator(int oper);
 
     const std::string &getHostName() const;
 

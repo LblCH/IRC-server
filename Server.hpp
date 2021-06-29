@@ -70,6 +70,9 @@ public:
 	virtual ~IRCServer();
 	void announce();  /// show server fields
 	void start();
+
+	const std::string &getServPass() const;
+
 	void work();
 	void stop();
 	Client *getClient(int fd);

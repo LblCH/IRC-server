@@ -249,3 +249,8 @@ Client *IRCServer::getClientByName(const std::string& name) {
     return (nullptr);
 }
 
+const std::string &IRCServer::getServPass() const
+{
+	return _serv_pass;
+}
+

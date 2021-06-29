@@ -52,3 +52,8 @@ const std::map<std::string, Channel *> &Client::getChannelList() const
 {
 	return _channel_list;
 }
+
+void Client::setPass(const std::string &pass)
+{
+	_pass = pass;
+}
