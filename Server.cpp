@@ -139,7 +139,10 @@ void IRCServer::work()
 					{
 						FD_SET(newfd, &_master_set); // добавляем в мастер-сет
 //						Client ss(newfd);
-						_client_list.insert(std::pair<int, Client*>(newfd, new Client(newfd)));
+                        Client *client = new Client(newfd);
+                        if (_client_list.empty())
+                            client->setOperator(1);
+						_client_list.insert(std::pair<int, Client*>(newfd, client));
 						_client_buffer_in.insert(std::pair<int, std::string>(newfd,std::string()));
 						_client_buffer_out.insert(std::pair<int, std::string>(newfd,std::string()));
 						if (newfd > _fd_max)
@@ -157,8 +160,7 @@ void IRCServer::work()
                         {
 							// соединение закрыто
 						    //delete getClient(i);
-                            getClient(i)->leaveChannels();
-						    _client_list.erase(i);
+                            getClient(i);
 							printf("IRC: socket %d closed\n", i);
                         }
 						else
@@ -238,5 +240,10 @@ void IRCServer::addChannel(std::string name, int fd) {
 const std::string &IRCServer::getServPass() const
 {
 	return _serv_pass;
+}
+
+void IRCServer::deleteClient(int fd) {
+    getClient(fd)->leaveChannels();
+    _client_list.erase(fd);
 }
 

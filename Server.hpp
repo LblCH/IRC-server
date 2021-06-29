@@ -66,6 +66,7 @@ class IRCServer
         Client *getClient(int fd);
         Channel *getChannel(std::string name);
         Client *getClientByName(const std::string& name);
+        void deleteClient(int fd);
 };
 
 void init_cmds(IRCServer *);

@@ -41,16 +41,23 @@ void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_kill(int fd, std::string *params, IRCServer *server) {
     Client *client = server->getClient(fd);
-    if (params != nullptr && client->getOperator() == 1 && !params[0].empty() && !params[1].empty())
+    if (params != nullptr && !params[0].empty() && !params[1].empty())
     {
-        Client *delete_client = server->getClientByName(params[0]);
-        if (delete_client != nullptr)
+        if (client->getOperator() == 1)
         {
-            send(delete_client->getfd(), params[1].c_str(), params[1].length(), 0);
-            close(delete_client->getfd());
-            FD_CLR(delete_client->getfd(), &server->_master_set);
+            Client *delete_client = server->getClientByName(params[0]);
+            if (delete_client != nullptr)
+            {
+                std::string str = makeString(params, 1);
+                makeSucces("KILL", str, delete_client->getfd(), server, fd);
+                server->deleteClient(fd);
+                close(delete_client->getfd());
+                FD_CLR(delete_client->getfd(), &server->_master_set);
+            } else
+                makeError("401", params[0], "No such nick", fd, server);
         }
-    }
+    } else
+        makeError("461", "KILL", "Not enough parameters.", fd, server);
 }
 
 void Command::cmd_nick(int fd, std::string *params, IRCServer *server) {
