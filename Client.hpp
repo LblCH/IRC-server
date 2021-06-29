@@ -3,6 +3,8 @@
 
 #include "Server.hpp"
 
+class Channel;
+
 class Client
 {
 private:

@@ -30,7 +30,6 @@ void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
     && !params[3].empty())
     {
         client->setHostName(params[0]);
-        client->setFlags(params[1]);
         std::string str = makeString(params, 3);
         client->setRealName(str);
     } else
