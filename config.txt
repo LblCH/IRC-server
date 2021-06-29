@@ -22,3 +22,5 @@ serv network name = ELITA
 serv port = 1013
 
 serv directory = C:\DIR
+
+serv pass = 1234

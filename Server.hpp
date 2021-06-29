@@ -43,6 +43,7 @@ private:
 	std::string _serv_admin_other_inform;
 	std::string _serv_network_name;
 	std::string _serv_directory;
+	std::string _serv_pass;
 	int			_listener_fd;
 	int			_key;
 
@@ -65,7 +66,7 @@ private:
 public:
 	fd_set _master_set;
 	t_cmdmap	_cmds;
-	IRCServer(std::string file); /// create new server with config file;
+	IRCServer(const std::string& file, int, char**); /// create new server with config file;
 	virtual ~IRCServer();
 	void announce();  /// show server fields
 	void start();

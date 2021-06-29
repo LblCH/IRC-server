@@ -1,8 +1,8 @@
 #include "Server.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-	IRCServer server("./config.txt");
+	IRCServer server("./config.txt", argc, argv);
 //	server.announce();
 	server.start();
 	server.work();
