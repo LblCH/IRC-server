@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	IRCServer server("./config.txt", argc, argv);
+	IRCServer server(argc, argv);
 //	server.announce();
 	server.start();
 	server.work();

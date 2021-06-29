@@ -10,7 +10,6 @@
 #include <map>
 #include <set>
 #include "define_error.h"
-#include "define_common.hpp"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <string.h>
@@ -43,11 +42,8 @@ class IRCServer
         std::string _serv_network_name;
         std::string _serv_directory;
         std::string _serv_pass;
-        int			_listener_fd;
-        fd_set      _servers_set;						    // connected servers fds
-        fd_set      _users_set;                             // connected clients fds
+        int			_listener_fd;                       // connected clients fds
         int         _fd_max;
-        int         _key;
 
         std::map<std::string, Channel*> _channel_list;      // active channels on this server
         std::map<int, std::string> _client_buffer_in;
@@ -60,7 +56,7 @@ class IRCServer
         fd_set _master_set;
         t_cmdmap	_cmds;
 
-        IRCServer(const std::string& file, int, char**);    // create new server with config file;
+        IRCServer(int, char**);    // create new server with config file;
         virtual ~IRCServer();
         void announce();                                    // show server fields
         void start();

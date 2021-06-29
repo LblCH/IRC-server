@@ -1,54 +1,23 @@
 #include "Server.hpp"
 
-IRCServer::IRCServer(const std::string& file, int argc, char** argv)
+IRCServer::IRCServer(int argc, char** argv)
 {
-	std::ifstream input_file;
-	_serv_pass = "";
-	if (argc == 1)
+	if (argc == 3)
 	{
-		input_file.open(file);
-		if (input_file.is_open())
-		{
-			std::string s; // parse string config file
-			int count = 0;
-			while (getline(input_file, s))
-			{
-				if (s.find('#') == -1 &&
-					s.length() > 3) //  skipping comments and empty string
-				{
-					count++;
-					s.erase(remove_if(s.begin(), s.end(), isspace), s.end());
-					s.erase(0, s.find('=') + 1);
-					if (count == 1) _serv_host_name = s;
-					if (count == 2) _serv_ip_serv = s;
-					if (count == 3) _geographic_location = s;
-					if (count == 4) _serv_Port = s;
-					if (count == 5) _serv_SIDl = s;
-					if (count == 6) _serv_admin_location_info = s;
-					if (count == 7) _serv_admin_email = s;
-					if (count == 8) _serv_admin_other_inform = s;
-					if (count == 9) _serv_network_name = s;
-					if (count == 10) _serv_directory = s;
-					if (count == 11) _serv_pass = s;
-				}
-			}
-
-		} else
-		{
-			std::cout << "Invalid file ./config.txt" << std::endl;
-		}
+		_serv_Port = argv[1];
+		_serv_pass = argv[2];
 	}
 	else
-	{
-		if (argc == 3)
-		{
-			_serv_Port = argv[1];
-			_serv_pass = argv[2];
-		}
-		else
-			printf("Usage: ./ircserv <port> <password>");
-	}
-	_key = 0;
+		printf("Usage: ./ircserv <port> <password>");
+	_serv_host_name = "s";
+	_serv_ip_serv = "127.0.0.1";
+	_geographic_location = "101";
+	_serv_SIDl = "101";
+	_serv_admin_location_info = "RF";
+	_serv_admin_email = "admin@admin.ru";
+	_serv_admin_other_inform = "other_info";
+	_serv_network_name = "Russia";
+	_serv_directory = "./";
 }
 
 IRCServer::IRCServer() {
@@ -140,8 +109,6 @@ void IRCServer::work()
 	fd_set read_fds;
 	timeval	timeout = {30, 0};
 
-	FD_ZERO(&_servers_set);
-	FD_ZERO(&_users_set);
 	FD_ZERO(&read_fds);
 
 	for(;;)

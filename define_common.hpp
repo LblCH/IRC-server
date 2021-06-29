@@ -1,6 +1,0 @@
-#ifndef FT_IRC_DEFINE_COMMON_HPP
-#define FT_IRC_DEFINE_COMMON_HPP
-
-#define CRLF "\r\n"
-
-#endif //FT_IRC_DEFINE_COMMON_HPP
