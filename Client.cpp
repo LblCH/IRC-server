@@ -3,6 +3,7 @@
 Client::Client(int fd) : _fd(fd)
 {
     _operator = 0;
+    _pass = "";
 }
 
 Client::~Client()
@@ -71,4 +72,8 @@ void Client::leaveChannels() {
         channel->sendMessage(_fd, "LEAVE", channel->getChannelName());
         it++;
     }
+}
+
+const std::string &Client::getPass() const {
+    return _pass;
 }

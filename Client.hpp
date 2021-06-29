@@ -32,6 +32,7 @@ class Client
         const std::string &getHostName() const;
         void setName(const std::string &name);
         const std::string &getName() const;
+        const std::string &getPass() const;
 };
 
 #endif //FT_IRC_CLIENT_H

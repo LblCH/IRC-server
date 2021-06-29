@@ -3,6 +3,7 @@
 IRCServer::IRCServer(const std::string& file, int argc, char** argv)
 {
 	std::ifstream input_file;
+	_serv_pass = "";
 	if (argc == 1)
 	{
 		input_file.open(file);
@@ -201,6 +202,7 @@ void IRCServer::work()
 					else
 					{
 						buf[nbytes] = '\0';
+//                        printf("MSG = %s", buf);
 						std::cout << "IRC: new msg from " << _client_list.find(i)->second->getfd() << std::endl;
 						_client_buffer_in.find(i)->second.append(buf);
 						_processing_msg(_client_buffer_in.find(i)->second, i, nbytes);

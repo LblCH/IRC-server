@@ -33,6 +33,8 @@ void Command::cmd_user(int fd, std::string *params, IRCServer *server) {
         client->setHostName(params[0]);
         std::string str = makeString(params, 3);
         client->setRealName(str);
+        if (!client->getName().empty() && (server->getServPass() == client->getPass() || server->getServPass().empty()))
+            makeAuthResponse(fd, server);
     } else
         makeError("461", "USER", "Not enough parameters.", fd, server);
 }
@@ -56,8 +58,11 @@ void Command::cmd_nick(int fd, std::string *params, IRCServer *server) {
     if (client != nullptr && params != nullptr && !params[0].empty())
     {
         Client *check = server->getClientByName(params[0]);
-        if (check == nullptr)
+        if (check == nullptr) {
             client->setName(params[0]);
+            if (!client->getRealName().empty() && (server->getServPass() == client->getPass() || server->getServPass().empty()))
+                makeAuthResponse(fd, server);
+        }
         else
             makeError("433", params[0], "Nickname is already in use.", fd, server);
     }
@@ -102,12 +107,19 @@ void Command::cmd_oper(int fd, std::string *params, IRCServer *server) {
 
 void Command::cmd_pass(int fd, std::string *params, IRCServer *server) {
 	Client *client = server->getClient(fd);
-	if (client->getRealName().empty())
-		makeError("462", "\b", "You may not reregister", fd, server);
-	if(params[0] != server->getServPass())
-		makeError("464", "\b", "Pass not correct", fd, server);
-	else
-		client->setPass(params[0]);
+	if (params != nullptr)
+    {
+        if (client->getRealName().empty())
+            makeError("462", "\b", "You may not reregister", fd, server);
+        if (params[0] != server->getServPass())
+            makeError("464", "\b", "Pass not correct", fd, server);
+        else {
+            client->setPass(params[0]);
+            if (!client->getName().empty())
+                makeAuthResponse(fd, server);
+        }
+    } else
+        makeError("461", "PASS", "Not enough parameters.", fd, server);
 }
 
 void Command::cmd_privmsg(int fd, std::string *params, IRCServer *server) {
@@ -180,8 +192,21 @@ void Command::makeSucces(std::string s1, std::string s2, int fd, IRCServer *serv
     send(fd, message.c_str(), message.length(), 0);
 }
 
-//:lich!lich@127.0.0.1 PRIVMSG mklotz :hello
-
+void Command::makeAuthResponse(int fd, IRCServer *server) {
+    std::string temp;
+    Client *my = server->getClient(fd);
+    temp = "Welcome to the Russian IRC Network";
+    temp.append(my->getName());
+    temp.append("!");
+    temp.append(my->getHostName());
+    temp.append("@127.0.0.1 ");
+    makeError("001", "\b", temp, fd, server);
+    makeError("002", "\b", "Your host is alcogolics@russia.ru, running version InspIRCd-3", fd, server);
+    makeError("003", "\b", "This server was created 17:13:16 Jun 29 2021", fd, server);
+    makeError("004", "\b", "alcogolics@russia.ru InspIRCd-3 iosw biklmnopstv :bklov", fd, server);
+    makeError("005", "AWAYLEN=200 CASEMAPPING=ascii CHANLIMIT=#:20 CHANMODES=b,k,l,imnpst CHANNELLEN=64 CHANTYPES=# ELIST=CMNTU HOSTLEN=64 KEYLEN=32 KICKLEN=255 LINELEN=512 MAXLIST=b:100", "are supported by this server", fd, server);
+    makeError("005", "MAXTARGETS=20 MODES=20 NAMELEN=128 NETWORK=Russia NICKLEN=30 PREFIX=(ov)@+ SAFELIST STATUSMSG=@+ TOPICLEN=307 USERLEN=10 USERMODES=,,s,iow WHOX", "are supported by this server", fd, server);
+}
 
 //Command &Command::operator=(const Command &rhs)
 //{
