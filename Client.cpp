@@ -47,6 +47,10 @@ void Client::setOperator(int oper) {
     _operator = oper;
 }
 
+const std::string &Client::getHostName() const {
+    return _host_name;
+}
+
 const std::string &Client::getRealName() const
 {
 	return _real_name;

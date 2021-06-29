@@ -33,6 +33,8 @@ public:
 
     void setOperator(int oper);
 
+    const std::string &getHostName() const;
+
     void setName(const std::string &name);
 
     const std::string &getName() const;

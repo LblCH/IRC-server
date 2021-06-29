@@ -9,6 +9,9 @@ class Command
 {
 private:
 	Command();
+	static std::string makeString(std::string *params, int index);
+	static void makeError(std::string, std::string, std::string, int, IRCServer *);
+	static void makeSucces(std::string, std::string, int, IRCServer *, int);
 
 public:
 //	Command();
