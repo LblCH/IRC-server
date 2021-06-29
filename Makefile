@@ -6,9 +6,9 @@ CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp Server.cpp Msg.cpp Client.cpp Channel.cpp Initcmds.cpp Command.cpp
+SRCS = src/main.cpp src/Server.cpp src/Msg.cpp src/Client.cpp src/Channel.cpp src/Initcmds.cpp src/Command.cpp
 
-BONUS_SRCS = main.cpp Server.cpp Msg.cpp Client.cpp Channel.cpp Initcmds_bonus.cpp Command_bonus.cpp
+BONUS_SRCS = src_bonus/main.cpp src_bonus/Server.cpp src_bonus/Msg.cpp src_bonus/Client.cpp src_bonus/Channel.cpp src_bonus/Initcmds.cpp src_bonus/Command.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

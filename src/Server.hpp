@@ -9,7 +9,6 @@
 #include <vector>
 #include <map>
 #include <set>
-#include "define_error.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <string.h>

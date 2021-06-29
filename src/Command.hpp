@@ -26,10 +26,6 @@ class Command
         static void cmd_pass(int fd, std::string *params, IRCServer *server);
         static void cmd_privmsg(int fd, std::string *params, IRCServer *server);
         static void cmd_user(int fd, std::string *params, IRCServer *server);
-
-	static void cmd_download(int fd, std::string *params, IRCServer *server);
-
-	static void cmd_upload(int fd, std::string *params, IRCServer *server);
 };
 
 #endif //IRCC_COMMAND_HPP
