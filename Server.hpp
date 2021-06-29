@@ -17,6 +17,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <fcntl.h>
+#include <fstream>
 #include "Client.hpp"
 #include "Msg.hpp"
 #include "Channel.hpp"

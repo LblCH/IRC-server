@@ -1,4 +1,4 @@
-#include "Command.hpp"
+#include "Command_bonus.hpp"
 
 Command::Command()
 {}
@@ -113,6 +113,58 @@ void Command::cmd_privmsg(int fd, std::string *params, IRCServer *server) {
         makeError("461", "PRIVMSG", "Not enough parameters.", fd, server);
 }
 
+void Command::cmd_upload(int fd, std::string *params, IRCServer *server)
+{
+	std::fstream *IncFile;
+	char *buf = new char[1024];
+	if (!params[0].empty())
+	{
+		IncFile->open(params[0], std::fstream::out);
+		int nbytes = 0;
+		while (1)
+		{
+			if ((nbytes = recv(fd, buf, sizeof buf, 0)) <= 0)
+			{
+				std::cout << "\tERROR while receive: " << "\tsocket " << fd
+						  << std::endl;
+				break;
+			}
+			if ((std::string) buf != "eof")
+			{
+				*IncFile << buf;
+				send(fd, SUCCESS, strlen(SUCCESS), 0);
+			} else
+				break;
+		}
+		IncFile->close();
+	}
+	else
+		makeError("461", "PRIVMSG", "Not enough parameters.", fd, server);
+}
+
+static void cmd_download(int fd, std::string *params, IRCServer *server)
+{
+	const int _size=4096;
+	char _buf[_size];
+
+	FILE* file;
+	file = fopen(params[0].c_str(), "rb");
+	int BytesRead = 0;
+	while (!feof(file)) {
+		memset(_buf, 0, _size);
+		BytesRead = fread(_buf, 1, _size, file);
+		if (BytesRead > 0) {
+			send(fd, _buf, BytesRead, 0);
+			std::cout << BytesRead << std::endl;
+			memset(_buf, 0, _size);
+			recv(fd, _buf, _size, 0);
+		}
+	}
+	send(fd, "eof", 3, 0);
+	fclose(file);
+	std::cout << "transmitting successful" << std::endl;
+}
+
 std::string Command::makeString(std::string *params, int index) {
     std::string response;
     params += index;
@@ -155,11 +207,6 @@ void Command::makeSucces(std::string s1, std::string s2, int fd, IRCServer *serv
     message.append("\r\n");
     send(fd, message.c_str(), message.length(), 0);
 }
-
-static void cmd_upload(int fd, std::string *params, IRCServer *server);
-
-static void cmd_download(int fd, std::string *params, IRCServer *server);
-
 
 //Command &Command::operator=(const Command &rhs)
 //{

@@ -1,7 +1,9 @@
-#ifndef IRCC_COMMAND_HPP
-#define IRCC_COMMAND_HPP
+#ifndef IRCC_COMMAND_BONUS_HPP
+#define IRCC_COMMAND_BONUS_HPP
 
 #include "Server.hpp"
+#define FAIL "-1"
+#define SUCCESS "0"
 
 class IRCServer;
 
@@ -17,7 +19,6 @@ public:
 //	Command();
 	virtual ~Command();
 	Command(const Command &);
-	Command &operator=(const Command &rhs);
     static void cmd_kill(int fd, std::string *params, IRCServer *server);
     static void cmd_join(int fd, std::string *params, IRCServer *server);
     static void cmd_nick(int fd, std::string *params, IRCServer *server);

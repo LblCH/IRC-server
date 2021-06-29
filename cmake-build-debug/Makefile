@@ -67,10 +67,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/mklotz/Desktop/ft_irc
+CMAKE_SOURCE_DIR = /Users/ztawanna/ft_irc
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/mklotz/Desktop/ft_irc/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ztawanna/ft_irc/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mklotz/Desktop/ft_irc/cmake-build-debug/CMakeFiles /Users/mklotz/Desktop/ft_irc/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles /Users/ztawanna/ft_irc/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mklotz/Desktop/ft_irc/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ztawanna/ft_irc/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -196,59 +196,59 @@ Client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Client.cpp.s
 .PHONY : Client.cpp.s
 
-Command.o: Command.cpp.o
+Command_bonus.o: Command_bonus.cpp.o
 
-.PHONY : Command.o
-
-# target to build an object file
-Command.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.o
-.PHONY : Command.cpp.o
-
-Command.i: Command.cpp.i
-
-.PHONY : Command.i
-
-# target to preprocess a source file
-Command.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.i
-.PHONY : Command.cpp.i
-
-Command.s: Command.cpp.s
-
-.PHONY : Command.s
-
-# target to generate assembly for a file
-Command.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command.cpp.s
-.PHONY : Command.cpp.s
-
-Initcmds.o: Initcmds.cpp.o
-
-.PHONY : Initcmds.o
+.PHONY : Command_bonus.o
 
 # target to build an object file
-Initcmds.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.o
-.PHONY : Initcmds.cpp.o
+Command_bonus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command_bonus.cpp.o
+.PHONY : Command_bonus.cpp.o
 
-Initcmds.i: Initcmds.cpp.i
+Command_bonus.i: Command_bonus.cpp.i
 
-.PHONY : Initcmds.i
+.PHONY : Command_bonus.i
 
 # target to preprocess a source file
-Initcmds.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.i
-.PHONY : Initcmds.cpp.i
+Command_bonus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command_bonus.cpp.i
+.PHONY : Command_bonus.cpp.i
 
-Initcmds.s: Initcmds.cpp.s
+Command_bonus.s: Command_bonus.cpp.s
 
-.PHONY : Initcmds.s
+.PHONY : Command_bonus.s
 
 # target to generate assembly for a file
-Initcmds.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds.cpp.s
-.PHONY : Initcmds.cpp.s
+Command_bonus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Command_bonus.cpp.s
+.PHONY : Command_bonus.cpp.s
+
+Initcmds_bonus.o: Initcmds_bonus.cpp.o
+
+.PHONY : Initcmds_bonus.o
+
+# target to build an object file
+Initcmds_bonus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds_bonus.cpp.o
+.PHONY : Initcmds_bonus.cpp.o
+
+Initcmds_bonus.i: Initcmds_bonus.cpp.i
+
+.PHONY : Initcmds_bonus.i
+
+# target to preprocess a source file
+Initcmds_bonus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds_bonus.cpp.i
+.PHONY : Initcmds_bonus.cpp.i
+
+Initcmds_bonus.s: Initcmds_bonus.cpp.s
+
+.PHONY : Initcmds_bonus.s
+
+# target to generate assembly for a file
+Initcmds_bonus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IRCC.dir/build.make CMakeFiles/IRCC.dir/Initcmds_bonus.cpp.s
+.PHONY : Initcmds_bonus.cpp.s
 
 Msg.o: Msg.cpp.o
 
@@ -346,12 +346,12 @@ help:
 	@echo "... Client.o"
 	@echo "... Client.i"
 	@echo "... Client.s"
-	@echo "... Command.o"
-	@echo "... Command.i"
-	@echo "... Command.s"
-	@echo "... Initcmds.o"
-	@echo "... Initcmds.i"
-	@echo "... Initcmds.s"
+	@echo "... Command_bonus.o"
+	@echo "... Command_bonus.i"
+	@echo "... Command_bonus.s"
+	@echo "... Initcmds_bonus.o"
+	@echo "... Initcmds_bonus.i"
+	@echo "... Initcmds_bonus.s"
 	@echo "... Msg.o"
 	@echo "... Msg.i"
 	@echo "... Msg.s"
