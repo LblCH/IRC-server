@@ -9,8 +9,11 @@ private:
 	std::string _name;
 	std::string _host_name;
 	std::string _real_name;
-	std::string _flags;
-	std::string _pass;
+	std::map<std::string , Channel *> _channel_list;
+public:
+	const std::map<std::string, Channel *> &getChannelList() const;
+
+private:
 	int 		_fd;
 	int         _operator;
 public:

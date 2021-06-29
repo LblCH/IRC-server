@@ -31,14 +31,6 @@ void Client::setRealName(const std::string &realName) {
     _real_name = realName;
 }
 
-void Client::setFlags(const std::string &flags) {
-    _flags = flags;
-}
-
-void Client::setPass(const std::string &pass) {
-    _pass = pass;
-}
-
 int Client::getOperator() const {
     return _operator;
 }
@@ -54,4 +46,9 @@ const std::string &Client::getHostName() const {
 const std::string &Client::getRealName() const
 {
 	return _real_name;
+}
+
+const std::map<std::string, Channel *> &Client::getChannelList() const
+{
+	return _channel_list;
 }
